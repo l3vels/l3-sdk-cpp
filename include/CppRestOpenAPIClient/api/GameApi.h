@@ -49,7 +49,7 @@ public:
     /// </remarks>
     /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
     /// <param name="id">Game or Project Id</param>
-    pplx::task<std::shared_ptr<Project>> projectControllerProjectById(
+    pplx::task<std::shared_ptr<Project>> getGameById(
         utility::string_t authorization,
         utility::string_t id
     ) const;

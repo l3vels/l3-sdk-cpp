@@ -44,6 +44,66 @@ public:
     virtual ~PlayerApi();
 
     /// <summary>
+    /// Count players
+    /// </summary>
+    /// <remarks>
+    /// Count players in game. Example: count players in game Call of Duty.
+    /// </remarks>
+    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="projectId">Game Id</param>
+    pplx::task<double> countPlayersByGameId(
+        utility::string_t authorization,
+        utility::string_t projectId
+    ) const;
+    /// <summary>
+    /// Create new player
+    /// </summary>
+    /// <remarks>
+    /// Create new player for game/project. Example: Create new player Jack in game Call of Duty.
+    /// </remarks>
+    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="createPlayerDto"></param>
+    pplx::task<std::shared_ptr<Player>> createPlayer(
+        utility::string_t authorization,
+        std::shared_ptr<CreatePlayerDto> createPlayerDto
+    ) const;
+    /// <summary>
+    /// Retrieve player by ID
+    /// </summary>
+    /// <remarks>
+    /// Retrieves a specific player by ID associated with game/project. Example: retrieve player Jack from game Call of Duty.
+    /// </remarks>
+    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="id">Player ID that you created in your game/project. Example: Jack, George, etc.</param>
+    /// <param name="projectId">Game/project ID to find asset in. Example: Call of Duty, Fortnite, etc.</param>
+    pplx::task<std::shared_ptr<Player>> getPlayerById(
+        utility::string_t authorization,
+        utility::string_t id,
+        utility::string_t projectId
+    ) const;
+    /// <summary>
+    /// Retrieve players
+    /// </summary>
+    /// <remarks>
+    /// Retrieve a list of players that match the specified filter criteria. Developers can use this method to retrieve players by name, category, status, or other properties. Example: Retrieve players from game Call of Duty.
+    /// </remarks>
+    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="projectId">Game/project ID to find player in your game. Example: Fortnite, Minecraft, etc.</param>
+    /// <param name="sort">Player field to sort by. You can sort by name, created_on and etc. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="order">Sort order (ASC for ascending or DESC for descending) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="searchText">Search player by name (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
+    /// <param name="limit">Number of players to return per page (optional, default to 0.0)</param>
+    /// <param name="page">Page number (optional, default to 0.0)</param>
+    pplx::task<std::vector<std::shared_ptr<Player>>> getPlayers(
+        utility::string_t authorization,
+        utility::string_t projectId,
+        boost::optional<utility::string_t> sort,
+        boost::optional<utility::string_t> order,
+        boost::optional<utility::string_t> searchText,
+        boost::optional<double> limit,
+        boost::optional<double> page
+    ) const;
+    /// <summary>
     /// Retrieve player asset by ID
     /// </summary>
     /// <remarks>
@@ -82,83 +142,13 @@ public:
         boost::optional<double> page
     ) const;
     /// <summary>
-    /// Create new player
-    /// </summary>
-    /// <remarks>
-    /// Create new player for game/project. Example: Create new player Jack in game Call of Duty.
-    /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="createPlayerDto"></param>
-    pplx::task<std::shared_ptr<Player>> playerControllerCreatePlayer(
-        utility::string_t authorization,
-        std::shared_ptr<CreatePlayerDto> createPlayerDto
-    ) const;
-    /// <summary>
-    /// Delete a Player
-    /// </summary>
-    /// <remarks>
-    /// This API method allows developers to delete a Player by providing the ID of the Player. Once deleted, the Player and all associated assets will be removed from the system.
-    /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    pplx::task<void> playerControllerDeletePlayer(
-        utility::string_t authorization
-    ) const;
-    /// <summary>
-    /// Retrieve players
-    /// </summary>
-    /// <remarks>
-    /// Retrieve a list of players that match the specified filter criteria. Developers can use this method to retrieve players by name, category, status, or other properties. Example: Retrieve players from game Call of Duty.
-    /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="projectId">Game/project ID to find player in your game. Example: Fortnite, Minecraft, etc.</param>
-    /// <param name="sort">Player field to sort by. You can sort by name, created_on and etc. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="order">Sort order (ASC for ascending or DESC for descending) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="searchText">Search player by name (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
-    /// <param name="limit">Number of players to return per page (optional, default to 0.0)</param>
-    /// <param name="page">Page number (optional, default to 0.0)</param>
-    pplx::task<std::vector<std::shared_ptr<Player>>> playerControllerGetPlayers(
-        utility::string_t authorization,
-        utility::string_t projectId,
-        boost::optional<utility::string_t> sort,
-        boost::optional<utility::string_t> order,
-        boost::optional<utility::string_t> searchText,
-        boost::optional<double> limit,
-        boost::optional<double> page
-    ) const;
-    /// <summary>
-    /// Retrieve player by ID
-    /// </summary>
-    /// <remarks>
-    /// Retrieves a specific player by ID associated with game/project. Example: retrieve player Jack from game Call of Duty.
-    /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="id">Player ID that you created in your game/project. Example: Jack, George, etc.</param>
-    /// <param name="projectId">Game/project ID to find asset in. Example: Call of Duty, Fortnite, etc.</param>
-    pplx::task<std::shared_ptr<Player>> playerControllerPlayerById(
-        utility::string_t authorization,
-        utility::string_t id,
-        utility::string_t projectId
-    ) const;
-    /// <summary>
-    /// Count players
-    /// </summary>
-    /// <remarks>
-    /// Count players in game. Example: count players in game Call of Duty.
-    /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="projectId">Game Id</param>
-    pplx::task<double> playerControllerPlayersCountByGameId(
-        utility::string_t authorization,
-        utility::string_t projectId
-    ) const;
-    /// <summary>
     /// Update an existing Player
     /// </summary>
     /// <remarks>
     /// This API method allows developers to update an existing Player by providing the ID of the Player and the updated properties and associated assets.
     /// </remarks>
     /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    pplx::task<std::shared_ptr<Player>> playerControllerUpdatePlayer(
+    pplx::task<std::shared_ptr<Player>> updatePlayer(
         utility::string_t authorization
     ) const;
 
