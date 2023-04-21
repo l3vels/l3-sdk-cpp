@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "6.5.0"
+  },
+  "generatorName": "cpp-restsdk",
+  "additionalProperties": {
+    "namespaceName": "L3vels",
+    "cppRestSdkVer": "2.10.15",
+    "cppRestSdkIncludePath": "/usr/include/cpprest",
+    "cppRestSdkLibPath": "/usr/lib/x86_64-linux-gnu",
+    "cppRestSdkLibName": "cpprest",
+    "modelPackage": "models",
+    "apiPackage": "api",
+    "supportsES6": true,
+    "useCoreLibrary": true,
+    "generateModelTests": true
+  }
+}
