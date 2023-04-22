@@ -47,13 +47,13 @@ public:
     /// <remarks>
     /// Retrieve transaction by ID
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
     /// <param name="id"></param>
-    /// <param name="projectId"></param>
-    pplx::task<std::shared_ptr<Transaction>> transactionControllerTransactionById(
+    /// <param name="gameId"></param>
+    pplx::task<std::shared_ptr<Transaction>> getTransactionById(
         utility::string_t authorization,
         utility::string_t id,
-        utility::string_t projectId
+        utility::string_t gameId
     ) const;
     /// <summary>
     /// Retrieve transactions
@@ -61,8 +61,8 @@ public:
     /// <remarks>
     /// Retrieve all transactions.
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="projectId">Game/project ID to find transactions in your game. Example: Fortnite, Minecraft, etc.</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="gameId">Game ID to find transactions in your game. Example: Fortnite, Minecraft, etc.</param>
     /// <param name="collectionId">Filter transactions by collection. Example: Get transactions only from Weapons collection. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="playerId">Player ID to mint to. You can provide player ID or player address (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="sort">Asset field to sort by. You can sort by name, created_on and etc. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
@@ -70,9 +70,9 @@ public:
     /// <param name="searchText">Search transactions by name (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="limit">Number of transactions to return per page (optional, default to 0.0)</param>
     /// <param name="page">Page number (optional, default to 0.0)</param>
-    pplx::task<std::shared_ptr<Transaction>> transactionControllerTransactions(
+    pplx::task<std::shared_ptr<Transaction>> getTransactions(
         utility::string_t authorization,
-        utility::string_t projectId,
+        utility::string_t gameId,
         boost::optional<utility::string_t> collectionId,
         boost::optional<utility::string_t> playerId,
         boost::optional<utility::string_t> sort,
@@ -87,7 +87,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
     pplx::task<void> transactionControllerWebhook(
         utility::string_t authorization
     ) const;

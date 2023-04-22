@@ -33,7 +33,7 @@ GameApi::~GameApi()
 {
 }
 
-pplx::task<std::shared_ptr<Project>> GameApi::getGameById(utility::string_t authorization, utility::string_t id) const
+pplx::task<std::shared_ptr<Game>> GameApi::getGameById(utility::string_t authorization, utility::string_t id) const
 {
 
 
@@ -138,7 +138,7 @@ pplx::task<std::shared_ptr<Project>> GameApi::getGameById(utility::string_t auth
     })
     .then([=](utility::string_t localVarResponse)
     {
-        std::shared_ptr<Project> localVarResult(new Project());
+        std::shared_ptr<Game> localVarResult(new Game());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {

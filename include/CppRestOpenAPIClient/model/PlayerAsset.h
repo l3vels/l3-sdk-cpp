@@ -99,20 +99,20 @@ public:
     /// <summary>
     /// The unique identifier of the account that the Player belongs to.
     /// </summary>
-    double getAccountId() const;
+    utility::string_t getAccountId() const;
     bool accountIdIsSet() const;
     void unsetAccount_id();
 
-    void setAccountId(double value);
+    void setAccountId(const utility::string_t& value);
 
     /// <summary>
-    /// The unique identifier of the project that the Player is associated with. This allows developers to organize their players by project and helps with tracking and reporting.
+    /// The unique identifier of the game that the Player is associated with. This allows developers to organize their players by game and helps with tracking and reporting.
     /// </summary>
-    utility::string_t getProjectId() const;
-    bool projectIdIsSet() const;
-    void unsetProject_id();
+    utility::string_t getGameId() const;
+    bool gameIdIsSet() const;
+    void unsetGame_id();
 
-    void setProjectId(const utility::string_t& value);
+    void setGameId(const utility::string_t& value);
 
     /// <summary>
     /// The date when the player was created.
@@ -135,20 +135,20 @@ public:
     /// <summary>
     /// The Id of the user who created the player.
     /// </summary>
-    double getCreatedBy() const;
+    utility::string_t getCreatedBy() const;
     bool createdByIsSet() const;
     void unsetCreated_by();
 
-    void setCreatedBy(double value);
+    void setCreatedBy(const utility::string_t& value);
 
     /// <summary>
     /// The Id of the user who last modified the player.
     /// </summary>
-    double getModifiedBy() const;
+    utility::string_t getModifiedBy() const;
     bool modifiedByIsSet() const;
     void unsetModified_by();
 
-    void setModifiedBy(double value);
+    void setModifiedBy(const utility::string_t& value);
 
 
 protected:
@@ -162,17 +162,17 @@ protected:
     bool m_Asset_idIsSet;
     utility::string_t m_Collection_id;
     bool m_Collection_idIsSet;
-    double m_Account_id;
+    utility::string_t m_Account_id;
     bool m_Account_idIsSet;
-    utility::string_t m_Project_id;
-    bool m_Project_idIsSet;
+    utility::string_t m_Game_id;
+    bool m_Game_idIsSet;
     utility::datetime m_Created_on;
     bool m_Created_onIsSet;
     utility::datetime m_Modified_on;
     bool m_Modified_onIsSet;
-    double m_Created_by;
+    utility::string_t m_Created_by;
     bool m_Created_byIsSet;
-    double m_Modified_by;
+    utility::string_t m_Modified_by;
     bool m_Modified_byIsSet;
 };
 

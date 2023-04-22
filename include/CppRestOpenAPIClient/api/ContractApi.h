@@ -23,8 +23,8 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
-#include "CppRestOpenAPIClient/model/SetContractUriDto.h"
-#include "CppRestOpenAPIClient/model/SetSaleStatusDto.h"
+#include "CppRestOpenAPIClient/model/SetContractUriInput.h"
+#include "CppRestOpenAPIClient/model/SetSaleStatusInput.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -46,15 +46,15 @@ public:
     /// Collection size
     /// </summary>
     /// <remarks>
-    /// Get size of collection
+    /// Count total contract in game.
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
     /// <param name="collectionId"></param>
-    /// <param name="projectId"></param>
-    pplx::task<void> contractControllerCollectionSize(
+    /// <param name="gameId"></param>
+    pplx::task<void> countContractsByGameId(
         utility::string_t authorization,
         utility::string_t collectionId,
-        utility::string_t projectId
+        utility::string_t gameId
     ) const;
     /// <summary>
     /// Get Contract URI
@@ -62,13 +62,13 @@ public:
     /// <remarks>
     /// Gets contract uri of contract
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
     /// <param name="collectionId"></param>
-    /// <param name="projectId"></param>
-    pplx::task<void> contractControllerContractUri(
+    /// <param name="gameId"></param>
+    pplx::task<void> getContractURI(
         utility::string_t authorization,
         utility::string_t collectionId,
-        utility::string_t projectId
+        utility::string_t gameId
     ) const;
     /// <summary>
     /// Update Contract URI
@@ -76,11 +76,11 @@ public:
     /// <remarks>
     /// Update Contract URI
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="setContractUriDto"></param>
-    pplx::task<void> contractControllerSetContractUri(
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="setContractUriInput"></param>
+    pplx::task<void> setContractURI(
         utility::string_t authorization,
-        std::shared_ptr<SetContractUriDto> setContractUriDto
+        std::shared_ptr<SetContractUriInput> setContractUriInput
     ) const;
     /// <summary>
     /// Update Sale status
@@ -88,11 +88,11 @@ public:
     /// <remarks>
     /// Update Sale status to PAUSED, PRE_SALE or PUBLIC
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="setSaleStatusDto"></param>
-    pplx::task<void> contractControllerSetSaleStatus(
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="setSaleStatusInput"></param>
+    pplx::task<void> updateSaleStatus(
         utility::string_t authorization,
-        std::shared_ptr<SetSaleStatusDto> setSaleStatusDto
+        std::shared_ptr<SetSaleStatusInput> setSaleStatusInput
     ) const;
 
 protected:

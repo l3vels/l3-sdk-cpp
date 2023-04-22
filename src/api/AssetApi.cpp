@@ -33,13 +33,13 @@ AssetApi::~AssetApi()
 {
 }
 
-pplx::task<double> AssetApi::countByGame(utility::string_t authorization, utility::string_t projectId) const
+pplx::task<double> AssetApi::countByGame(utility::string_t authorization, utility::string_t gameId) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/asset/count/{project_id}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("project_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(projectId)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/asset/count/{game_id}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("game_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(gameId)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -159,14 +159,14 @@ pplx::task<double> AssetApi::countByGame(utility::string_t authorization, utilit
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Asset>> AssetApi::getAssetById(utility::string_t authorization, utility::string_t id, utility::string_t projectId) const
+pplx::task<std::shared_ptr<Asset>> AssetApi::getAssetById(utility::string_t authorization, utility::string_t id, utility::string_t gameId) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/asset/{project_id}/{id}");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/asset/{game_id}/{id}");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(id)));
-boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("project_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(projectId)));
+boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("game_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(gameId)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -286,7 +286,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<AssetsResponseDto>> AssetApi::getAssets(utility::string_t authorization, utility::string_t projectId, boost::optional<utility::string_t> collectionId, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<utility::string_t> searchText, boost::optional<double> limit, boost::optional<double> page) const
+pplx::task<std::shared_ptr<AssetsResponse>> AssetApi::getAssets(utility::string_t authorization, utility::string_t gameId, boost::optional<utility::string_t> collectionId, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<utility::string_t> searchText, boost::optional<double> limit, boost::optional<double> page) const
 {
 
 
@@ -331,7 +331,7 @@ pplx::task<std::shared_ptr<AssetsResponseDto>> AssetApi::getAssets(utility::stri
         localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = ApiClient::parameterToString(authorization);
     }
     {
-        localVarQueryParams[utility::conversions::to_string_t("project_id")] = ApiClient::parameterToString(projectId);
+        localVarQueryParams[utility::conversions::to_string_t("game_id")] = ApiClient::parameterToString(gameId);
     }
     if (collectionId)
     {
@@ -417,7 +417,7 @@ pplx::task<std::shared_ptr<AssetsResponseDto>> AssetApi::getAssets(utility::stri
     })
     .then([=](utility::string_t localVarResponse)
     {
-        std::shared_ptr<AssetsResponseDto> localVarResult(new AssetsResponseDto());
+        std::shared_ptr<AssetsResponse> localVarResult(new AssetsResponse());
 
         if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
         {
@@ -438,13 +438,13 @@ pplx::task<std::shared_ptr<AssetsResponseDto>> AssetApi::getAssets(utility::stri
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Asset>> AssetApi::updateAsset(utility::string_t authorization, utility::string_t id, std::shared_ptr<UpdateAssetDto> updateAssetDto) const
+pplx::task<std::shared_ptr<Asset>> AssetApi::updateAsset(utility::string_t authorization, utility::string_t id, std::shared_ptr<UpdateAssetInput> updateAssetInput) const
 {
 
-    // verify the required parameter 'updateAssetDto' is set
-    if (updateAssetDto == nullptr)
+    // verify the required parameter 'updateAssetInput' is set
+    if (updateAssetInput == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'updateAssetDto' when calling AssetApi->updateAsset"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'updateAssetInput' when calling AssetApi->updateAsset"));
     }
 
 
@@ -500,7 +500,7 @@ pplx::task<std::shared_ptr<Asset>> AssetApi::updateAsset(utility::string_t autho
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(updateAssetDto);
+        localVarJson = ModelBase::toJson(updateAssetInput);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -511,9 +511,9 @@ pplx::task<std::shared_ptr<Asset>> AssetApi::updateAsset(utility::string_t autho
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(updateAssetDto.get())
+        if(updateAssetInput.get())
         {
-            updateAssetDto->toMultipart(localVarMultipart, utility::conversions::to_string_t("updateAssetDto"));
+            updateAssetInput->toMultipart(localVarMultipart, utility::conversions::to_string_t("updateAssetInput"));
         }
         
 

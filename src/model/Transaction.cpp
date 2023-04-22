@@ -49,19 +49,19 @@ Transaction::Transaction()
     m_Method = utility::conversions::to_string_t("");
     m_MethodIsSet = false;
     m_EventsIsSet = false;
-    m_Project_id = utility::conversions::to_string_t("");
-    m_Project_idIsSet = false;
+    m_Game_id = utility::conversions::to_string_t("");
+    m_Game_idIsSet = false;
     m_Collection_id = utility::conversions::to_string_t("");
     m_Collection_idIsSet = false;
-    m_Account_id = 0.0;
+    m_Account_id = utility::conversions::to_string_t("");
     m_Account_idIsSet = false;
     m_Created_on = utility::datetime();
     m_Created_onIsSet = false;
     m_Modified_on = utility::datetime();
     m_Modified_onIsSet = false;
-    m_Created_by = 0.0;
+    m_Created_by = utility::conversions::to_string_t("");
     m_Created_byIsSet = false;
-    m_Modified_by = 0.0;
+    m_Modified_by = utility::conversions::to_string_t("");
     m_Modified_byIsSet = false;
 }
 
@@ -139,9 +139,9 @@ web::json::value Transaction::toJson() const
     {
         val[utility::conversions::to_string_t(U("events"))] = ModelBase::toJson(m_Events);
     }
-    if(m_Project_idIsSet)
+    if(m_Game_idIsSet)
     {
-        val[utility::conversions::to_string_t(U("project_id"))] = ModelBase::toJson(m_Project_id);
+        val[utility::conversions::to_string_t(U("game_id"))] = ModelBase::toJson(m_Game_id);
     }
     if(m_Collection_idIsSet)
     {
@@ -325,14 +325,14 @@ bool Transaction::fromJson(const web::json::value& val)
             setEvents(refVal_setEvents);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("project_id"))))
+    if(val.has_field(utility::conversions::to_string_t(U("game_id"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("project_id")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("game_id")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setProjectId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectId);
-            setProjectId(refVal_setProjectId);
+            utility::string_t refVal_setGameId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setGameId);
+            setGameId(refVal_setGameId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("collection_id"))))
@@ -350,7 +350,7 @@ bool Transaction::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("account_id")));
         if(!fieldValue.is_null())
         {
-            double refVal_setAccountId;
+            utility::string_t refVal_setAccountId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccountId);
             setAccountId(refVal_setAccountId);
         }
@@ -380,7 +380,7 @@ bool Transaction::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("created_by")));
         if(!fieldValue.is_null())
         {
-            double refVal_setCreatedBy;
+            utility::string_t refVal_setCreatedBy;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedBy);
             setCreatedBy(refVal_setCreatedBy);
         }
@@ -390,7 +390,7 @@ bool Transaction::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("modified_by")));
         if(!fieldValue.is_null())
         {
-            double refVal_setModifiedBy;
+            utility::string_t refVal_setModifiedBy;
             ok &= ModelBase::fromJson(fieldValue, refVal_setModifiedBy);
             setModifiedBy(refVal_setModifiedBy);
         }
@@ -465,9 +465,9 @@ void Transaction::toMultipart(std::shared_ptr<MultipartFormData> multipart, cons
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("events")), m_Events));
     }
-    if(m_Project_idIsSet)
+    if(m_Game_idIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("project_id")), m_Project_id));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("game_id")), m_Game_id));
     }
     if(m_Collection_idIsSet)
     {
@@ -594,11 +594,11 @@ bool Transaction::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("events"))), refVal_setEvents );
         setEvents(refVal_setEvents);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("project_id"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("game_id"))))
     {
-        utility::string_t refVal_setProjectId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("project_id"))), refVal_setProjectId );
-        setProjectId(refVal_setProjectId);
+        utility::string_t refVal_setGameId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("game_id"))), refVal_setGameId );
+        setGameId(refVal_setGameId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("collection_id"))))
     {
@@ -608,7 +608,7 @@ bool Transaction::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("account_id"))))
     {
-        double refVal_setAccountId;
+        utility::string_t refVal_setAccountId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("account_id"))), refVal_setAccountId );
         setAccountId(refVal_setAccountId);
     }
@@ -626,13 +626,13 @@ bool Transaction::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, co
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("created_by"))))
     {
-        double refVal_setCreatedBy;
+        utility::string_t refVal_setCreatedBy;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("created_by"))), refVal_setCreatedBy );
         setCreatedBy(refVal_setCreatedBy);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("modified_by"))))
     {
-        double refVal_setModifiedBy;
+        utility::string_t refVal_setModifiedBy;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("modified_by"))), refVal_setModifiedBy );
         setModifiedBy(refVal_setModifiedBy);
     }
@@ -939,25 +939,25 @@ void Transaction::unsetEvents()
 {
     m_EventsIsSet = false;
 }
-utility::string_t Transaction::getProjectId() const
+utility::string_t Transaction::getGameId() const
 {
-    return m_Project_id;
+    return m_Game_id;
 }
 
-void Transaction::setProjectId(const utility::string_t& value)
+void Transaction::setGameId(const utility::string_t& value)
 {
-    m_Project_id = value;
-    m_Project_idIsSet = true;
+    m_Game_id = value;
+    m_Game_idIsSet = true;
 }
 
-bool Transaction::projectIdIsSet() const
+bool Transaction::gameIdIsSet() const
 {
-    return m_Project_idIsSet;
+    return m_Game_idIsSet;
 }
 
-void Transaction::unsetProject_id()
+void Transaction::unsetGame_id()
 {
-    m_Project_idIsSet = false;
+    m_Game_idIsSet = false;
 }
 utility::string_t Transaction::getCollectionId() const
 {
@@ -979,12 +979,12 @@ void Transaction::unsetCollection_id()
 {
     m_Collection_idIsSet = false;
 }
-double Transaction::getAccountId() const
+utility::string_t Transaction::getAccountId() const
 {
     return m_Account_id;
 }
 
-void Transaction::setAccountId(double value)
+void Transaction::setAccountId(const utility::string_t& value)
 {
     m_Account_id = value;
     m_Account_idIsSet = true;
@@ -1039,12 +1039,12 @@ void Transaction::unsetModified_on()
 {
     m_Modified_onIsSet = false;
 }
-double Transaction::getCreatedBy() const
+utility::string_t Transaction::getCreatedBy() const
 {
     return m_Created_by;
 }
 
-void Transaction::setCreatedBy(double value)
+void Transaction::setCreatedBy(const utility::string_t& value)
 {
     m_Created_by = value;
     m_Created_byIsSet = true;
@@ -1059,12 +1059,12 @@ void Transaction::unsetCreated_by()
 {
     m_Created_byIsSet = false;
 }
-double Transaction::getModifiedBy() const
+utility::string_t Transaction::getModifiedBy() const
 {
     return m_Modified_by;
 }
 
-void Transaction::setModifiedBy(double value)
+void Transaction::setModifiedBy(const utility::string_t& value)
 {
     m_Modified_by = value;
     m_Modified_byIsSet = true;

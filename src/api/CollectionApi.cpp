@@ -33,13 +33,13 @@ CollectionApi::~CollectionApi()
 {
 }
 
-pplx::task<double> CollectionApi::countCollectionsByGameId(utility::string_t authorization, utility::string_t projectId) const
+pplx::task<double> CollectionApi::countCollectionsByGameId(utility::string_t authorization, utility::string_t gameId) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/collection/count/{project_id}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("project_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(projectId)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/collection/count/{game_id}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("game_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(gameId)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -159,14 +159,14 @@ pplx::task<double> CollectionApi::countCollectionsByGameId(utility::string_t aut
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Collection>> CollectionApi::getCollectionById(utility::string_t authorization, utility::string_t id, utility::string_t projectId) const
+pplx::task<std::shared_ptr<Collection>> CollectionApi::getCollectionById(utility::string_t authorization, utility::string_t id, utility::string_t gameId) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/collection/{project_id}/{id}");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/collection/{game_id}/{id}");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(id)));
-boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("project_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(projectId)));
+boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("game_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(gameId)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -286,7 +286,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<Collection>>> CollectionApi::getCollections(utility::string_t authorization, utility::string_t projectId, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<utility::string_t> searchText, boost::optional<double> limit, boost::optional<double> page) const
+pplx::task<std::vector<std::shared_ptr<Collection>>> CollectionApi::getCollections(utility::string_t authorization, utility::string_t gameId, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<utility::string_t> searchText, boost::optional<double> limit, boost::optional<double> page) const
 {
 
 
@@ -331,7 +331,7 @@ pplx::task<std::vector<std::shared_ptr<Collection>>> CollectionApi::getCollectio
         localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = ApiClient::parameterToString(authorization);
     }
     {
-        localVarQueryParams[utility::conversions::to_string_t("project_id")] = ApiClient::parameterToString(projectId);
+        localVarQueryParams[utility::conversions::to_string_t("game_id")] = ApiClient::parameterToString(gameId);
     }
     if (sort)
     {

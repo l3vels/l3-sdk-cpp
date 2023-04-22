@@ -24,8 +24,8 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/Asset.h"
-#include "CppRestOpenAPIClient/model/AssetsResponseDto.h"
-#include "CppRestOpenAPIClient/model/UpdateAssetDto.h"
+#include "CppRestOpenAPIClient/model/AssetsResponse.h"
+#include "CppRestOpenAPIClient/model/UpdateAssetInput.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -49,25 +49,25 @@ public:
     /// <remarks>
     /// Counts total assets in game.
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="projectId"></param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="gameId"></param>
     pplx::task<double> countByGame(
         utility::string_t authorization,
-        utility::string_t projectId
+        utility::string_t gameId
     ) const;
     /// <summary>
     /// Retrieve asset by ID
     /// </summary>
     /// <remarks>
-    /// Retrieve asset by ID in specific game/project. Example: Find asset AK-47 in game Call of Duty
+    /// Retrieve asset by ID in specific Game. Example: Find asset AK-47 in game Call of Duty
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
     /// <param name="id">Asset ID to find</param>
-    /// <param name="projectId">Game/project ID to find asset in</param>
+    /// <param name="gameId">Game ID to find asset in</param>
     pplx::task<std::shared_ptr<Asset>> getAssetById(
         utility::string_t authorization,
         utility::string_t id,
-        utility::string_t projectId
+        utility::string_t gameId
     ) const;
     /// <summary>
     /// Retrieve assets
@@ -75,17 +75,17 @@ public:
     /// <remarks>
     /// This API method retrieves a list of assets that match the specified filter criteria. Developers can use this method to retrieve assets by name, description or other properties
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="projectId">Game/project ID to find assets in your game. Example: Fortnite, Minecraft, etc.</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="gameId">Game ID to find assets in your game. Example: Fortnite, Minecraft, etc.</param>
     /// <param name="collectionId">Filter assets by collection. Example: Get assets only from Weapons collection. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="sort">Asset field to sort by. You can sort by name, created_on and etc. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="order">Sort order (ASC for ascending or DESC for descending) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">Search assets by name (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="limit">Number of assets to return per page (optional, default to 0.0)</param>
     /// <param name="page">Page number (optional, default to 0.0)</param>
-    pplx::task<std::shared_ptr<AssetsResponseDto>> getAssets(
+    pplx::task<std::shared_ptr<AssetsResponse>> getAssets(
         utility::string_t authorization,
-        utility::string_t projectId,
+        utility::string_t gameId,
         boost::optional<utility::string_t> collectionId,
         boost::optional<utility::string_t> sort,
         boost::optional<utility::string_t> order,
@@ -99,13 +99,13 @@ public:
     /// <remarks>
     /// Update asset by ID in specific collection. Example: Update asset AK-47 in collection Weapons
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
     /// <param name="id">Asset ID to update</param>
-    /// <param name="updateAssetDto"></param>
+    /// <param name="updateAssetInput"></param>
     pplx::task<std::shared_ptr<Asset>> updateAsset(
         utility::string_t authorization,
         utility::string_t id,
-        std::shared_ptr<UpdateAssetDto> updateAssetDto
+        std::shared_ptr<UpdateAssetInput> updateAssetInput
     ) const;
 
 protected:

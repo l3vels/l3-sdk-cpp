@@ -33,7 +33,7 @@ ContractApi::~ContractApi()
 {
 }
 
-pplx::task<void> ContractApi::contractControllerCollectionSize(utility::string_t authorization, utility::string_t collectionId, utility::string_t projectId) const
+pplx::task<void> ContractApi::countContractsByGameId(utility::string_t authorization, utility::string_t collectionId, utility::string_t gameId) const
 {
 
 
@@ -66,7 +66,7 @@ pplx::task<void> ContractApi::contractControllerCollectionSize(utility::string_t
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ContractApi->contractControllerCollectionSize does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ContractApi->countContractsByGameId does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -80,7 +80,7 @@ pplx::task<void> ContractApi::contractControllerCollectionSize(utility::string_t
         localVarQueryParams[utility::conversions::to_string_t("collection_id")] = ApiClient::parameterToString(collectionId);
     }
     {
-        localVarQueryParams[utility::conversions::to_string_t("project_id")] = ApiClient::parameterToString(projectId);
+        localVarQueryParams[utility::conversions::to_string_t("game_id")] = ApiClient::parameterToString(gameId);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -102,7 +102,7 @@ pplx::task<void> ContractApi::contractControllerCollectionSize(utility::string_t
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ContractApi->contractControllerCollectionSize does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ContractApi->countContractsByGameId does not consume any supported media type"));
     }
 
 
@@ -122,7 +122,7 @@ pplx::task<void> ContractApi::contractControllerCollectionSize(utility::string_t
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling contractControllerCollectionSize: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling countContractsByGameId: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -133,7 +133,7 @@ pplx::task<void> ContractApi::contractControllerCollectionSize(utility::string_t
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling contractControllerCollectionSize: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling countContractsByGameId: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -145,7 +145,7 @@ pplx::task<void> ContractApi::contractControllerCollectionSize(utility::string_t
         return void();
     });
 }
-pplx::task<void> ContractApi::contractControllerContractUri(utility::string_t authorization, utility::string_t collectionId, utility::string_t projectId) const
+pplx::task<void> ContractApi::getContractURI(utility::string_t authorization, utility::string_t collectionId, utility::string_t gameId) const
 {
 
 
@@ -178,7 +178,7 @@ pplx::task<void> ContractApi::contractControllerContractUri(utility::string_t au
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ContractApi->contractControllerContractUri does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ContractApi->getContractURI does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -192,7 +192,7 @@ pplx::task<void> ContractApi::contractControllerContractUri(utility::string_t au
         localVarQueryParams[utility::conversions::to_string_t("collection_id")] = ApiClient::parameterToString(collectionId);
     }
     {
-        localVarQueryParams[utility::conversions::to_string_t("project_id")] = ApiClient::parameterToString(projectId);
+        localVarQueryParams[utility::conversions::to_string_t("game_id")] = ApiClient::parameterToString(gameId);
     }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
@@ -214,7 +214,7 @@ pplx::task<void> ContractApi::contractControllerContractUri(utility::string_t au
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ContractApi->contractControllerContractUri does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ContractApi->getContractURI does not consume any supported media type"));
     }
 
 
@@ -234,7 +234,7 @@ pplx::task<void> ContractApi::contractControllerContractUri(utility::string_t au
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling contractControllerContractUri: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getContractURI: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -245,7 +245,7 @@ pplx::task<void> ContractApi::contractControllerContractUri(utility::string_t au
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling contractControllerContractUri: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getContractURI: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -257,13 +257,13 @@ pplx::task<void> ContractApi::contractControllerContractUri(utility::string_t au
         return void();
     });
 }
-pplx::task<void> ContractApi::contractControllerSetContractUri(utility::string_t authorization, std::shared_ptr<SetContractUriDto> setContractUriDto) const
+pplx::task<void> ContractApi::setContractURI(utility::string_t authorization, std::shared_ptr<SetContractUriInput> setContractUriInput) const
 {
 
-    // verify the required parameter 'setContractUriDto' is set
-    if (setContractUriDto == nullptr)
+    // verify the required parameter 'setContractUriInput' is set
+    if (setContractUriInput == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'setContractUriDto' when calling ContractApi->contractControllerSetContractUri"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'setContractUriInput' when calling ContractApi->setContractURI"));
     }
 
 
@@ -296,7 +296,7 @@ pplx::task<void> ContractApi::contractControllerSetContractUri(utility::string_t
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ContractApi->contractControllerSetContractUri does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ContractApi->setContractURI does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -317,7 +317,7 @@ pplx::task<void> ContractApi::contractControllerSetContractUri(utility::string_t
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(setContractUriDto);
+        localVarJson = ModelBase::toJson(setContractUriInput);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -328,9 +328,9 @@ pplx::task<void> ContractApi::contractControllerSetContractUri(utility::string_t
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(setContractUriDto.get())
+        if(setContractUriInput.get())
         {
-            setContractUriDto->toMultipart(localVarMultipart, utility::conversions::to_string_t("setContractUriDto"));
+            setContractUriInput->toMultipart(localVarMultipart, utility::conversions::to_string_t("setContractUriInput"));
         }
         
 
@@ -343,7 +343,7 @@ pplx::task<void> ContractApi::contractControllerSetContractUri(utility::string_t
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ContractApi->contractControllerSetContractUri does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ContractApi->setContractURI does not consume any supported media type"));
     }
 
 
@@ -363,7 +363,7 @@ pplx::task<void> ContractApi::contractControllerSetContractUri(utility::string_t
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling contractControllerSetContractUri: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling setContractURI: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -374,7 +374,7 @@ pplx::task<void> ContractApi::contractControllerSetContractUri(utility::string_t
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling contractControllerSetContractUri: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling setContractURI: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -386,13 +386,13 @@ pplx::task<void> ContractApi::contractControllerSetContractUri(utility::string_t
         return void();
     });
 }
-pplx::task<void> ContractApi::contractControllerSetSaleStatus(utility::string_t authorization, std::shared_ptr<SetSaleStatusDto> setSaleStatusDto) const
+pplx::task<void> ContractApi::updateSaleStatus(utility::string_t authorization, std::shared_ptr<SetSaleStatusInput> setSaleStatusInput) const
 {
 
-    // verify the required parameter 'setSaleStatusDto' is set
-    if (setSaleStatusDto == nullptr)
+    // verify the required parameter 'setSaleStatusInput' is set
+    if (setSaleStatusInput == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'setSaleStatusDto' when calling ContractApi->contractControllerSetSaleStatus"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'setSaleStatusInput' when calling ContractApi->updateSaleStatus"));
     }
 
 
@@ -425,7 +425,7 @@ pplx::task<void> ContractApi::contractControllerSetSaleStatus(utility::string_t 
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("ContractApi->contractControllerSetSaleStatus does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("ContractApi->updateSaleStatus does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -446,7 +446,7 @@ pplx::task<void> ContractApi::contractControllerSetSaleStatus(utility::string_t 
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(setSaleStatusDto);
+        localVarJson = ModelBase::toJson(setSaleStatusInput);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -457,9 +457,9 @@ pplx::task<void> ContractApi::contractControllerSetSaleStatus(utility::string_t 
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(setSaleStatusDto.get())
+        if(setSaleStatusInput.get())
         {
-            setSaleStatusDto->toMultipart(localVarMultipart, utility::conversions::to_string_t("setSaleStatusDto"));
+            setSaleStatusInput->toMultipart(localVarMultipart, utility::conversions::to_string_t("setSaleStatusInput"));
         }
         
 
@@ -472,7 +472,7 @@ pplx::task<void> ContractApi::contractControllerSetSaleStatus(utility::string_t 
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("ContractApi->contractControllerSetSaleStatus does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("ContractApi->updateSaleStatus does not consume any supported media type"));
     }
 
 
@@ -492,7 +492,7 @@ pplx::task<void> ContractApi::contractControllerSetSaleStatus(utility::string_t 
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling contractControllerSetSaleStatus: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling updateSaleStatus: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -503,7 +503,7 @@ pplx::task<void> ContractApi::contractControllerSetSaleStatus(utility::string_t 
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling contractControllerSetSaleStatus: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling updateSaleStatus: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }

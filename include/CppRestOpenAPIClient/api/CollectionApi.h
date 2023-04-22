@@ -47,11 +47,11 @@ public:
     /// <remarks>
     /// Count total collections in game.
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="projectId">Game/project ID to count collections in</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="gameId">Game ID to count collections in</param>
     pplx::task<double> countCollectionsByGameId(
         utility::string_t authorization,
-        utility::string_t projectId
+        utility::string_t gameId
     ) const;
     /// <summary>
     /// Retrieve collection by ID
@@ -59,13 +59,13 @@ public:
     /// <remarks>
     /// This API method retrieves a specific collection based on the unique identifier provided in the request.
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
     /// <param name="id">Collection ID to find</param>
-    /// <param name="projectId">Game/project ID to find collection in</param>
+    /// <param name="gameId">Game ID to find collection in</param>
     pplx::task<std::shared_ptr<Collection>> getCollectionById(
         utility::string_t authorization,
         utility::string_t id,
-        utility::string_t projectId
+        utility::string_t gameId
     ) const;
     /// <summary>
     /// Retrieve collections
@@ -73,8 +73,8 @@ public:
     /// <remarks>
     /// This API method retrieves a list of collections that match the specified filter criteria. Developers can use this method to retrieve collections by name, category, status, or other properties.
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="projectId">Game/project ID to find collections in your game. Example: Fortnite, Minecraft, etc.</param>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="gameId">Game ID to find collections in your game. Example: Fortnite, Minecraft, etc.</param>
     /// <param name="sort">Collection field to sort by. You can sort by name, created_on and etc. (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="order">Sort order (ASC for ascending or DESC for descending) (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
     /// <param name="searchText">Search collections by name (optional, default to utility::conversions::to_string_t(&quot;&quot;))</param>
@@ -82,7 +82,7 @@ public:
     /// <param name="page">Page number (optional, default to 0.0)</param>
     pplx::task<std::vector<std::shared_ptr<Collection>>> getCollections(
         utility::string_t authorization,
-        utility::string_t projectId,
+        utility::string_t gameId,
         boost::optional<utility::string_t> sort,
         boost::optional<utility::string_t> order,
         boost::optional<utility::string_t> searchText,

@@ -33,13 +33,13 @@ PlayerApi::~PlayerApi()
 {
 }
 
-pplx::task<double> PlayerApi::countPlayersByGameId(utility::string_t authorization, utility::string_t projectId) const
+pplx::task<double> PlayerApi::countPlayersByGameId(utility::string_t authorization, utility::string_t gameId) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/player/count/{project_id}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("project_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(projectId)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/player/count/{game_id}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("game_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(gameId)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -159,13 +159,13 @@ pplx::task<double> PlayerApi::countPlayersByGameId(utility::string_t authorizati
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Player>> PlayerApi::createPlayer(utility::string_t authorization, std::shared_ptr<CreatePlayerDto> createPlayerDto) const
+pplx::task<std::shared_ptr<Player>> PlayerApi::createPlayer(utility::string_t authorization, std::shared_ptr<CreatePlayerInput> createPlayerInput) const
 {
 
-    // verify the required parameter 'createPlayerDto' is set
-    if (createPlayerDto == nullptr)
+    // verify the required parameter 'createPlayerInput' is set
+    if (createPlayerInput == nullptr)
     {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'createPlayerDto' when calling PlayerApi->createPlayer"));
+        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'createPlayerInput' when calling PlayerApi->createPlayer"));
     }
 
 
@@ -220,7 +220,7 @@ pplx::task<std::shared_ptr<Player>> PlayerApi::createPlayer(utility::string_t au
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(createPlayerDto);
+        localVarJson = ModelBase::toJson(createPlayerInput);
         
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
@@ -231,9 +231,9 @@ pplx::task<std::shared_ptr<Player>> PlayerApi::createPlayer(utility::string_t au
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
 
-        if(createPlayerDto.get())
+        if(createPlayerInput.get())
         {
-            createPlayerDto->toMultipart(localVarMultipart, utility::conversions::to_string_t("createPlayerDto"));
+            createPlayerInput->toMultipart(localVarMultipart, utility::conversions::to_string_t("createPlayerInput"));
         }
         
 
@@ -307,14 +307,141 @@ pplx::task<std::shared_ptr<Player>> PlayerApi::createPlayer(utility::string_t au
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Player>> PlayerApi::getPlayerById(utility::string_t authorization, utility::string_t id, utility::string_t projectId) const
+pplx::task<std::shared_ptr<PlayerAsset>> PlayerApi::getPlayerAssetById(utility::string_t authorization, utility::string_t id, utility::string_t gameId) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/player/{project_id}/{id}");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/player-asset/{game_id}/{id}");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(id)));
-boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("project_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(projectId)));
+boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("game_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(gameId)));
+
+    std::map<utility::string_t, utility::string_t> localVarQueryParams;
+    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
+    std::map<utility::string_t, utility::string_t> localVarFormParams;
+    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
+
+    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
+    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
+
+    utility::string_t localVarResponseHttpContentType;
+
+    // use JSON if possible
+    if ( localVarResponseHttpContentTypes.size() == 0 )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // JSON
+    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
+    {
+        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else
+    {
+        throw ApiException(400, utility::conversions::to_string_t("PlayerApi->getPlayerAssetById does not produce any supported media type"));
+    }
+
+    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
+
+    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
+
+    {
+        localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = ApiClient::parameterToString(authorization);
+    }
+
+    std::shared_ptr<IHttpBody> localVarHttpBody;
+    utility::string_t localVarRequestHttpContentType;
+
+    // use JSON if possible
+    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
+    }
+    // multipart formdata
+    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
+    }
+    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
+    {
+        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
+    }
+    else
+    {
+        throw ApiException(415, utility::conversions::to_string_t("PlayerApi->getPlayerAssetById does not consume any supported media type"));
+    }
+
+
+    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
+    .then([=](web::http::http_response localVarResponse)
+    {
+        if (m_ApiClient->getResponseHandler())
+        {
+            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
+        }
+
+        // 1xx - informational : OK
+        // 2xx - successful       : OK
+        // 3xx - redirection   : OK
+        // 4xx - client error  : not OK
+        // 5xx - client error  : not OK
+        if (localVarResponse.status_code() >= 400)
+        {
+            throw ApiException(localVarResponse.status_code()
+                , utility::conversions::to_string_t("error calling getPlayerAssetById: ") + localVarResponse.reason_phrase()
+                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+        }
+
+        // check response content type
+        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
+        {
+            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
+            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
+            {
+                throw ApiException(500
+                    , utility::conversions::to_string_t("error calling getPlayerAssetById: unexpected response type: ") + localVarContentType
+                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
+            }
+        }
+
+        return localVarResponse.extract_string();
+    })
+    .then([=](utility::string_t localVarResponse)
+    {
+        std::shared_ptr<PlayerAsset> localVarResult(new PlayerAsset());
+
+        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
+        {
+            web::json::value localVarJson = web::json::value::parse(localVarResponse);
+
+            ModelBase::fromJson(localVarJson, localVarResult);
+        }
+        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
+        // {
+        // TODO multipart response parsing
+        // }
+        else
+        {
+            throw ApiException(500
+                , utility::conversions::to_string_t("error calling getPlayerAssetById: unsupported response type"));
+        }
+
+        return localVarResult;
+    });
+}
+pplx::task<std::shared_ptr<Player>> PlayerApi::getPlayerById(utility::string_t authorization, utility::string_t id, utility::string_t gameId) const
+{
+
+
+    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/player/{game_id}/{id}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(id)));
+boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("game_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(gameId)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -434,7 +561,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
         return localVarResult;
     });
 }
-pplx::task<std::vector<std::shared_ptr<Player>>> PlayerApi::getPlayers(utility::string_t authorization, utility::string_t projectId, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<utility::string_t> searchText, boost::optional<double> limit, boost::optional<double> page) const
+pplx::task<std::vector<std::shared_ptr<Player>>> PlayerApi::getPlayers(utility::string_t authorization, utility::string_t gameId, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<utility::string_t> searchText, boost::optional<double> limit, boost::optional<double> page) const
 {
 
 
@@ -479,7 +606,7 @@ pplx::task<std::vector<std::shared_ptr<Player>>> PlayerApi::getPlayers(utility::
         localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = ApiClient::parameterToString(authorization);
     }
     {
-        localVarQueryParams[utility::conversions::to_string_t("project_id")] = ApiClient::parameterToString(projectId);
+        localVarQueryParams[utility::conversions::to_string_t("game_id")] = ApiClient::parameterToString(gameId);
     }
     if (sort)
     {
@@ -586,134 +713,7 @@ pplx::task<std::vector<std::shared_ptr<Player>>> PlayerApi::getPlayers(utility::
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<PlayerAsset>> PlayerApi::playerAssetControllerPlayerAssetById(utility::string_t authorization, utility::string_t id, utility::string_t projectId) const
-{
-
-
-    std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/player-asset/{project_id}/{id}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(id)));
-boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("project_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(projectId)));
-
-    std::map<utility::string_t, utility::string_t> localVarQueryParams;
-    std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
-    std::map<utility::string_t, utility::string_t> localVarFormParams;
-    std::map<utility::string_t, std::shared_ptr<HttpContent>> localVarFileParams;
-
-    std::unordered_set<utility::string_t> localVarResponseHttpContentTypes;
-    localVarResponseHttpContentTypes.insert( utility::conversions::to_string_t("application/json") );
-
-    utility::string_t localVarResponseHttpContentType;
-
-    // use JSON if possible
-    if ( localVarResponseHttpContentTypes.size() == 0 )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // JSON
-    else if ( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarResponseHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarResponseHttpContentTypes.end() )
-    {
-        localVarResponseHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else
-    {
-        throw ApiException(400, utility::conversions::to_string_t("PlayerApi->playerAssetControllerPlayerAssetById does not produce any supported media type"));
-    }
-
-    localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
-
-    std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
-
-    {
-        localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = ApiClient::parameterToString(authorization);
-    }
-
-    std::shared_ptr<IHttpBody> localVarHttpBody;
-    utility::string_t localVarRequestHttpContentType;
-
-    // use JSON if possible
-    if ( localVarConsumeHttpContentTypes.size() == 0 || localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/json")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
-    }
-    // multipart formdata
-    else if( localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("multipart/form-data")) != localVarConsumeHttpContentTypes.end() )
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
-    }
-    else if (localVarConsumeHttpContentTypes.find(utility::conversions::to_string_t("application/x-www-form-urlencoded")) != localVarConsumeHttpContentTypes.end())
-    {
-        localVarRequestHttpContentType = utility::conversions::to_string_t("application/x-www-form-urlencoded");
-    }
-    else
-    {
-        throw ApiException(415, utility::conversions::to_string_t("PlayerApi->playerAssetControllerPlayerAssetById does not consume any supported media type"));
-    }
-
-
-    return m_ApiClient->callApi(localVarPath, utility::conversions::to_string_t("GET"), localVarQueryParams, localVarHttpBody, localVarHeaderParams, localVarFormParams, localVarFileParams, localVarRequestHttpContentType)
-    .then([=](web::http::http_response localVarResponse)
-    {
-        if (m_ApiClient->getResponseHandler())
-        {
-            m_ApiClient->getResponseHandler()(localVarResponse.status_code(), localVarResponse.headers());
-        }
-
-        // 1xx - informational : OK
-        // 2xx - successful       : OK
-        // 3xx - redirection   : OK
-        // 4xx - client error  : not OK
-        // 5xx - client error  : not OK
-        if (localVarResponse.status_code() >= 400)
-        {
-            throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling playerAssetControllerPlayerAssetById: ") + localVarResponse.reason_phrase()
-                , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-        }
-
-        // check response content type
-        if(localVarResponse.headers().has(utility::conversions::to_string_t("Content-Type")))
-        {
-            utility::string_t localVarContentType = localVarResponse.headers()[utility::conversions::to_string_t("Content-Type")];
-            if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
-            {
-                throw ApiException(500
-                    , utility::conversions::to_string_t("error calling playerAssetControllerPlayerAssetById: unexpected response type: ") + localVarContentType
-                    , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
-            }
-        }
-
-        return localVarResponse.extract_string();
-    })
-    .then([=](utility::string_t localVarResponse)
-    {
-        std::shared_ptr<PlayerAsset> localVarResult(new PlayerAsset());
-
-        if(localVarResponseHttpContentType == utility::conversions::to_string_t("application/json"))
-        {
-            web::json::value localVarJson = web::json::value::parse(localVarResponse);
-
-            ModelBase::fromJson(localVarJson, localVarResult);
-        }
-        // else if(localVarResponseHttpContentType == utility::conversions::to_string_t("multipart/form-data"))
-        // {
-        // TODO multipart response parsing
-        // }
-        else
-        {
-            throw ApiException(500
-                , utility::conversions::to_string_t("error calling playerAssetControllerPlayerAssetById: unsupported response type"));
-        }
-
-        return localVarResult;
-    });
-}
-pplx::task<std::vector<std::shared_ptr<PlayerAsset>>> PlayerApi::playerAssetControllerPlayerAssets(utility::string_t authorization, utility::string_t projectId, boost::optional<utility::string_t> assetId, boost::optional<utility::string_t> playerId, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<double> limit, boost::optional<double> page) const
+pplx::task<std::vector<std::shared_ptr<PlayerAsset>>> PlayerApi::playerAssets(utility::string_t authorization, utility::string_t gameId, boost::optional<utility::string_t> assetId, boost::optional<utility::string_t> playerId, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<double> limit, boost::optional<double> page) const
 {
 
 
@@ -747,7 +747,7 @@ pplx::task<std::vector<std::shared_ptr<PlayerAsset>>> PlayerApi::playerAssetCont
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("PlayerApi->playerAssetControllerPlayerAssets does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("PlayerApi->playerAssets does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -758,7 +758,7 @@ pplx::task<std::vector<std::shared_ptr<PlayerAsset>>> PlayerApi::playerAssetCont
         localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = ApiClient::parameterToString(authorization);
     }
     {
-        localVarQueryParams[utility::conversions::to_string_t("project_id")] = ApiClient::parameterToString(projectId);
+        localVarQueryParams[utility::conversions::to_string_t("game_id")] = ApiClient::parameterToString(gameId);
     }
     if (assetId)
     {
@@ -804,7 +804,7 @@ pplx::task<std::vector<std::shared_ptr<PlayerAsset>>> PlayerApi::playerAssetCont
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("PlayerApi->playerAssetControllerPlayerAssets does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("PlayerApi->playerAssets does not consume any supported media type"));
     }
 
 
@@ -824,7 +824,7 @@ pplx::task<std::vector<std::shared_ptr<PlayerAsset>>> PlayerApi::playerAssetCont
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling playerAssetControllerPlayerAssets: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling playerAssets: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -835,7 +835,7 @@ pplx::task<std::vector<std::shared_ptr<PlayerAsset>>> PlayerApi::playerAssetCont
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling playerAssetControllerPlayerAssets: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling playerAssets: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -863,7 +863,7 @@ pplx::task<std::vector<std::shared_ptr<PlayerAsset>>> PlayerApi::playerAssetCont
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling playerAssetControllerPlayerAssets: unsupported response type"));
+                , utility::conversions::to_string_t("error calling playerAssets: unsupported response type"));
         }
 
         return localVarResult;

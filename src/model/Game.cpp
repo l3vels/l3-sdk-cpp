@@ -12,43 +12,46 @@
 
 
 
-#include "CppRestOpenAPIClient/model/Collection.h"
+#include "CppRestOpenAPIClient/model/Game.h"
 
 namespace models {
 
 
 
-Collection::Collection()
+Game::Game()
 {
     m_Id = utility::conversions::to_string_t("");
     m_IdIsSet = false;
-    m_Unique_id = utility::conversions::to_string_t("");
-    m_Unique_idIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
+    m_Category = utility::conversions::to_string_t("");
+    m_CategoryIsSet = false;
     m_Logo_image = utility::conversions::to_string_t("");
     m_Logo_imageIsSet = false;
     m_MediasIsSet = false;
+    m_Social_linksIsSet = false;
     m_Main_media = utility::conversions::to_string_t("");
     m_Main_mediaIsSet = false;
     m_Url = utility::conversions::to_string_t("");
     m_UrlIsSet = false;
     m_Web_link = utility::conversions::to_string_t("");
     m_Web_linkIsSet = false;
-    m_Supply = 0.0;
-    m_SupplyIsSet = false;
-    m_Custom_property_propsIsSet = false;
-    m_Social_linksIsSet = false;
-    m_Custom_asset_propsIsSet = false;
-    m_CategoriesIsSet = false;
+    m_Discord = utility::conversions::to_string_t("");
+    m_DiscordIsSet = false;
+    m_Twitter = utility::conversions::to_string_t("");
+    m_TwitterIsSet = false;
+    m_Instagram = utility::conversions::to_string_t("");
+    m_InstagramIsSet = false;
+    m_Contact_phone = utility::conversions::to_string_t("");
+    m_Contact_phoneIsSet = false;
+    m_Contact_email = utility::conversions::to_string_t("");
+    m_Contact_emailIsSet = false;
     m_Status = utility::conversions::to_string_t("");
     m_StatusIsSet = false;
     m_Account_id = utility::conversions::to_string_t("");
     m_Account_idIsSet = false;
-    m_Game_id = utility::conversions::to_string_t("");
-    m_Game_idIsSet = false;
     m_Created_on = utility::datetime();
     m_Created_onIsSet = false;
     m_Modified_on = utility::datetime();
@@ -59,16 +62,16 @@ Collection::Collection()
     m_Modified_byIsSet = false;
 }
 
-Collection::~Collection()
+Game::~Game()
 {
 }
 
-void Collection::validate()
+void Game::validate()
 {
     // TODO: implement validation
 }
 
-web::json::value Collection::toJson() const
+web::json::value Game::toJson() const
 {
 
     web::json::value val = web::json::value::object();
@@ -76,10 +79,6 @@ web::json::value Collection::toJson() const
     if(m_IdIsSet)
     {
         val[utility::conversions::to_string_t(U("id"))] = ModelBase::toJson(m_Id);
-    }
-    if(m_Unique_idIsSet)
-    {
-        val[utility::conversions::to_string_t(U("unique_id"))] = ModelBase::toJson(m_Unique_id);
     }
     if(m_NameIsSet)
     {
@@ -89,6 +88,10 @@ web::json::value Collection::toJson() const
     {
         val[utility::conversions::to_string_t(U("description"))] = ModelBase::toJson(m_Description);
     }
+    if(m_CategoryIsSet)
+    {
+        val[utility::conversions::to_string_t(U("category"))] = ModelBase::toJson(m_Category);
+    }
     if(m_Logo_imageIsSet)
     {
         val[utility::conversions::to_string_t(U("logo_image"))] = ModelBase::toJson(m_Logo_image);
@@ -96,6 +99,10 @@ web::json::value Collection::toJson() const
     if(m_MediasIsSet)
     {
         val[utility::conversions::to_string_t(U("medias"))] = ModelBase::toJson(m_Medias);
+    }
+    if(m_Social_linksIsSet)
+    {
+        val[utility::conversions::to_string_t(U("social_links"))] = ModelBase::toJson(m_Social_links);
     }
     if(m_Main_mediaIsSet)
     {
@@ -109,25 +116,25 @@ web::json::value Collection::toJson() const
     {
         val[utility::conversions::to_string_t(U("web_link"))] = ModelBase::toJson(m_Web_link);
     }
-    if(m_SupplyIsSet)
+    if(m_DiscordIsSet)
     {
-        val[utility::conversions::to_string_t(U("supply"))] = ModelBase::toJson(m_Supply);
+        val[utility::conversions::to_string_t(U("discord"))] = ModelBase::toJson(m_Discord);
     }
-    if(m_Custom_property_propsIsSet)
+    if(m_TwitterIsSet)
     {
-        val[utility::conversions::to_string_t(U("custom_property_props"))] = ModelBase::toJson(m_Custom_property_props);
+        val[utility::conversions::to_string_t(U("twitter"))] = ModelBase::toJson(m_Twitter);
     }
-    if(m_Social_linksIsSet)
+    if(m_InstagramIsSet)
     {
-        val[utility::conversions::to_string_t(U("social_links"))] = ModelBase::toJson(m_Social_links);
+        val[utility::conversions::to_string_t(U("instagram"))] = ModelBase::toJson(m_Instagram);
     }
-    if(m_Custom_asset_propsIsSet)
+    if(m_Contact_phoneIsSet)
     {
-        val[utility::conversions::to_string_t(U("custom_asset_props"))] = ModelBase::toJson(m_Custom_asset_props);
+        val[utility::conversions::to_string_t(U("contact_phone"))] = ModelBase::toJson(m_Contact_phone);
     }
-    if(m_CategoriesIsSet)
+    if(m_Contact_emailIsSet)
     {
-        val[utility::conversions::to_string_t(U("categories"))] = ModelBase::toJson(m_Categories);
+        val[utility::conversions::to_string_t(U("contact_email"))] = ModelBase::toJson(m_Contact_email);
     }
     if(m_StatusIsSet)
     {
@@ -136,10 +143,6 @@ web::json::value Collection::toJson() const
     if(m_Account_idIsSet)
     {
         val[utility::conversions::to_string_t(U("account_id"))] = ModelBase::toJson(m_Account_id);
-    }
-    if(m_Game_idIsSet)
-    {
-        val[utility::conversions::to_string_t(U("game_id"))] = ModelBase::toJson(m_Game_id);
     }
     if(m_Created_onIsSet)
     {
@@ -161,7 +164,7 @@ web::json::value Collection::toJson() const
     return val;
 }
 
-bool Collection::fromJson(const web::json::value& val)
+bool Game::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
@@ -173,16 +176,6 @@ bool Collection::fromJson(const web::json::value& val)
             utility::string_t refVal_setId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setId);
             setId(refVal_setId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("unique_id"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("unique_id")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setUniqueId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setUniqueId);
-            setUniqueId(refVal_setUniqueId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("name"))))
@@ -205,6 +198,16 @@ bool Collection::fromJson(const web::json::value& val)
             setDescription(refVal_setDescription);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t(U("category"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("category")));
+        if(!fieldValue.is_null())
+        {
+            utility::string_t refVal_setCategory;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setCategory);
+            setCategory(refVal_setCategory);
+        }
+    }
     if(val.has_field(utility::conversions::to_string_t(U("logo_image"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("logo_image")));
@@ -223,6 +226,16 @@ bool Collection::fromJson(const web::json::value& val)
             std::vector<utility::string_t> refVal_setMedias;
             ok &= ModelBase::fromJson(fieldValue, refVal_setMedias);
             setMedias(refVal_setMedias);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("social_links"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("social_links")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<utility::string_t> refVal_setSocialLinks;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setSocialLinks);
+            setSocialLinks(refVal_setSocialLinks);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("main_media"))))
@@ -255,54 +268,54 @@ bool Collection::fromJson(const web::json::value& val)
             setWebLink(refVal_setWebLink);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("supply"))))
+    if(val.has_field(utility::conversions::to_string_t(U("discord"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("supply")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("discord")));
         if(!fieldValue.is_null())
         {
-            double refVal_setSupply;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setSupply);
-            setSupply(refVal_setSupply);
+            utility::string_t refVal_setDiscord;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setDiscord);
+            setDiscord(refVal_setDiscord);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("custom_property_props"))))
+    if(val.has_field(utility::conversions::to_string_t(U("twitter"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("custom_property_props")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("twitter")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Object> refVal_setCustomPropertyProps;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCustomPropertyProps);
-            setCustomPropertyProps(refVal_setCustomPropertyProps);
+            utility::string_t refVal_setTwitter;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setTwitter);
+            setTwitter(refVal_setTwitter);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("social_links"))))
+    if(val.has_field(utility::conversions::to_string_t(U("instagram"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("social_links")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("instagram")));
         if(!fieldValue.is_null())
         {
-            std::vector<utility::string_t> refVal_setSocialLinks;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setSocialLinks);
-            setSocialLinks(refVal_setSocialLinks);
+            utility::string_t refVal_setInstagram;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setInstagram);
+            setInstagram(refVal_setInstagram);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("custom_asset_props"))))
+    if(val.has_field(utility::conversions::to_string_t(U("contact_phone"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("custom_asset_props")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("contact_phone")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Object> refVal_setCustomAssetProps;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCustomAssetProps);
-            setCustomAssetProps(refVal_setCustomAssetProps);
+            utility::string_t refVal_setContactPhone;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setContactPhone);
+            setContactPhone(refVal_setContactPhone);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("categories"))))
+    if(val.has_field(utility::conversions::to_string_t(U("contact_email"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("categories")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("contact_email")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Object> refVal_setCategories;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setCategories);
-            setCategories(refVal_setCategories);
+            utility::string_t refVal_setContactEmail;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setContactEmail);
+            setContactEmail(refVal_setContactEmail);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("status"))))
@@ -323,16 +336,6 @@ bool Collection::fromJson(const web::json::value& val)
             utility::string_t refVal_setAccountId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccountId);
             setAccountId(refVal_setAccountId);
-        }
-    }
-    if(val.has_field(utility::conversions::to_string_t(U("game_id"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("game_id")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setGameId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setGameId);
-            setGameId(refVal_setGameId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("created_on"))))
@@ -378,7 +381,7 @@ bool Collection::fromJson(const web::json::value& val)
     return ok;
 }
 
-void Collection::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
+void Game::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
 {
     utility::string_t namePrefix = prefix;
     if(namePrefix.size() > 0 && namePrefix.substr(namePrefix.size() - 1) != utility::conversions::to_string_t(U(".")))
@@ -389,10 +392,6 @@ void Collection::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("id")), m_Id));
     }
-    if(m_Unique_idIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("unique_id")), m_Unique_id));
-    }
     if(m_NameIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("name")), m_Name));
@@ -401,6 +400,10 @@ void Collection::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
     }
+    if(m_CategoryIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("category")), m_Category));
+    }
     if(m_Logo_imageIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("logo_image")), m_Logo_image));
@@ -408,6 +411,10 @@ void Collection::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     if(m_MediasIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("medias")), m_Medias));
+    }
+    if(m_Social_linksIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("social_links")), m_Social_links));
     }
     if(m_Main_mediaIsSet)
     {
@@ -421,25 +428,25 @@ void Collection::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("web_link")), m_Web_link));
     }
-    if(m_SupplyIsSet)
+    if(m_DiscordIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("supply")), m_Supply));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("discord")), m_Discord));
     }
-    if(m_Custom_property_propsIsSet)
+    if(m_TwitterIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("custom_property_props")), m_Custom_property_props));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("twitter")), m_Twitter));
     }
-    if(m_Social_linksIsSet)
+    if(m_InstagramIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("social_links")), m_Social_links));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("instagram")), m_Instagram));
     }
-    if(m_Custom_asset_propsIsSet)
+    if(m_Contact_phoneIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("custom_asset_props")), m_Custom_asset_props));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("contact_phone")), m_Contact_phone));
     }
-    if(m_CategoriesIsSet)
+    if(m_Contact_emailIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("categories")), m_Categories));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("contact_email")), m_Contact_email));
     }
     if(m_StatusIsSet)
     {
@@ -448,10 +455,6 @@ void Collection::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     if(m_Account_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("account_id")), m_Account_id));
-    }
-    if(m_Game_idIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("game_id")), m_Game_id));
     }
     if(m_Created_onIsSet)
     {
@@ -471,7 +474,7 @@ void Collection::toMultipart(std::shared_ptr<MultipartFormData> multipart, const
     }
 }
 
-bool Collection::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
+bool Game::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix)
 {
     bool ok = true;
     utility::string_t namePrefix = prefix;
@@ -486,12 +489,6 @@ bool Collection::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("id"))), refVal_setId );
         setId(refVal_setId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("unique_id"))))
-    {
-        utility::string_t refVal_setUniqueId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("unique_id"))), refVal_setUniqueId );
-        setUniqueId(refVal_setUniqueId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("name"))))
     {
         utility::string_t refVal_setName;
@@ -504,6 +501,12 @@ bool Collection::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("description"))), refVal_setDescription );
         setDescription(refVal_setDescription);
     }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("category"))))
+    {
+        utility::string_t refVal_setCategory;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("category"))), refVal_setCategory );
+        setCategory(refVal_setCategory);
+    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("logo_image"))))
     {
         utility::string_t refVal_setLogoImage;
@@ -515,6 +518,12 @@ bool Collection::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         std::vector<utility::string_t> refVal_setMedias;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("medias"))), refVal_setMedias );
         setMedias(refVal_setMedias);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("social_links"))))
+    {
+        std::vector<utility::string_t> refVal_setSocialLinks;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("social_links"))), refVal_setSocialLinks );
+        setSocialLinks(refVal_setSocialLinks);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("main_media"))))
     {
@@ -534,35 +543,35 @@ bool Collection::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("web_link"))), refVal_setWebLink );
         setWebLink(refVal_setWebLink);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("supply"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("discord"))))
     {
-        double refVal_setSupply;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("supply"))), refVal_setSupply );
-        setSupply(refVal_setSupply);
+        utility::string_t refVal_setDiscord;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("discord"))), refVal_setDiscord );
+        setDiscord(refVal_setDiscord);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("custom_property_props"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("twitter"))))
     {
-        std::shared_ptr<Object> refVal_setCustomPropertyProps;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("custom_property_props"))), refVal_setCustomPropertyProps );
-        setCustomPropertyProps(refVal_setCustomPropertyProps);
+        utility::string_t refVal_setTwitter;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("twitter"))), refVal_setTwitter );
+        setTwitter(refVal_setTwitter);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("social_links"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("instagram"))))
     {
-        std::vector<utility::string_t> refVal_setSocialLinks;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("social_links"))), refVal_setSocialLinks );
-        setSocialLinks(refVal_setSocialLinks);
+        utility::string_t refVal_setInstagram;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("instagram"))), refVal_setInstagram );
+        setInstagram(refVal_setInstagram);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("custom_asset_props"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("contact_phone"))))
     {
-        std::shared_ptr<Object> refVal_setCustomAssetProps;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("custom_asset_props"))), refVal_setCustomAssetProps );
-        setCustomAssetProps(refVal_setCustomAssetProps);
+        utility::string_t refVal_setContactPhone;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("contact_phone"))), refVal_setContactPhone );
+        setContactPhone(refVal_setContactPhone);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("categories"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("contact_email"))))
     {
-        std::shared_ptr<Object> refVal_setCategories;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("categories"))), refVal_setCategories );
-        setCategories(refVal_setCategories);
+        utility::string_t refVal_setContactEmail;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("contact_email"))), refVal_setContactEmail );
+        setContactEmail(refVal_setContactEmail);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("status"))))
     {
@@ -575,12 +584,6 @@ bool Collection::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
         utility::string_t refVal_setAccountId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("account_id"))), refVal_setAccountId );
         setAccountId(refVal_setAccountId);
-    }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("game_id"))))
-    {
-        utility::string_t refVal_setGameId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("game_id"))), refVal_setGameId );
-        setGameId(refVal_setGameId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("created_on"))))
     {
@@ -609,423 +612,423 @@ bool Collection::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     return ok;
 }
 
-utility::string_t Collection::getId() const
+utility::string_t Game::getId() const
 {
     return m_Id;
 }
 
-void Collection::setId(const utility::string_t& value)
+void Game::setId(const utility::string_t& value)
 {
     m_Id = value;
     m_IdIsSet = true;
 }
 
-bool Collection::idIsSet() const
+bool Game::idIsSet() const
 {
     return m_IdIsSet;
 }
 
-void Collection::unsetId()
+void Game::unsetId()
 {
     m_IdIsSet = false;
 }
-utility::string_t Collection::getUniqueId() const
-{
-    return m_Unique_id;
-}
-
-void Collection::setUniqueId(const utility::string_t& value)
-{
-    m_Unique_id = value;
-    m_Unique_idIsSet = true;
-}
-
-bool Collection::uniqueIdIsSet() const
-{
-    return m_Unique_idIsSet;
-}
-
-void Collection::unsetUnique_id()
-{
-    m_Unique_idIsSet = false;
-}
-utility::string_t Collection::getName() const
+utility::string_t Game::getName() const
 {
     return m_Name;
 }
 
-void Collection::setName(const utility::string_t& value)
+void Game::setName(const utility::string_t& value)
 {
     m_Name = value;
     m_NameIsSet = true;
 }
 
-bool Collection::nameIsSet() const
+bool Game::nameIsSet() const
 {
     return m_NameIsSet;
 }
 
-void Collection::unsetName()
+void Game::unsetName()
 {
     m_NameIsSet = false;
 }
-utility::string_t Collection::getDescription() const
+utility::string_t Game::getDescription() const
 {
     return m_Description;
 }
 
-void Collection::setDescription(const utility::string_t& value)
+void Game::setDescription(const utility::string_t& value)
 {
     m_Description = value;
     m_DescriptionIsSet = true;
 }
 
-bool Collection::descriptionIsSet() const
+bool Game::descriptionIsSet() const
 {
     return m_DescriptionIsSet;
 }
 
-void Collection::unsetDescription()
+void Game::unsetDescription()
 {
     m_DescriptionIsSet = false;
 }
-utility::string_t Collection::getLogoImage() const
+utility::string_t Game::getCategory() const
+{
+    return m_Category;
+}
+
+void Game::setCategory(const utility::string_t& value)
+{
+    m_Category = value;
+    m_CategoryIsSet = true;
+}
+
+bool Game::categoryIsSet() const
+{
+    return m_CategoryIsSet;
+}
+
+void Game::unsetCategory()
+{
+    m_CategoryIsSet = false;
+}
+utility::string_t Game::getLogoImage() const
 {
     return m_Logo_image;
 }
 
-void Collection::setLogoImage(const utility::string_t& value)
+void Game::setLogoImage(const utility::string_t& value)
 {
     m_Logo_image = value;
     m_Logo_imageIsSet = true;
 }
 
-bool Collection::logoImageIsSet() const
+bool Game::logoImageIsSet() const
 {
     return m_Logo_imageIsSet;
 }
 
-void Collection::unsetLogo_image()
+void Game::unsetLogo_image()
 {
     m_Logo_imageIsSet = false;
 }
-std::vector<utility::string_t>& Collection::getMedias()
+std::vector<utility::string_t>& Game::getMedias()
 {
     return m_Medias;
 }
 
-void Collection::setMedias(const std::vector<utility::string_t>& value)
+void Game::setMedias(const std::vector<utility::string_t>& value)
 {
     m_Medias = value;
     m_MediasIsSet = true;
 }
 
-bool Collection::mediasIsSet() const
+bool Game::mediasIsSet() const
 {
     return m_MediasIsSet;
 }
 
-void Collection::unsetMedias()
+void Game::unsetMedias()
 {
     m_MediasIsSet = false;
 }
-utility::string_t Collection::getMainMedia() const
-{
-    return m_Main_media;
-}
-
-void Collection::setMainMedia(const utility::string_t& value)
-{
-    m_Main_media = value;
-    m_Main_mediaIsSet = true;
-}
-
-bool Collection::mainMediaIsSet() const
-{
-    return m_Main_mediaIsSet;
-}
-
-void Collection::unsetMain_media()
-{
-    m_Main_mediaIsSet = false;
-}
-utility::string_t Collection::getUrl() const
-{
-    return m_Url;
-}
-
-void Collection::setUrl(const utility::string_t& value)
-{
-    m_Url = value;
-    m_UrlIsSet = true;
-}
-
-bool Collection::urlIsSet() const
-{
-    return m_UrlIsSet;
-}
-
-void Collection::unsetUrl()
-{
-    m_UrlIsSet = false;
-}
-utility::string_t Collection::getWebLink() const
-{
-    return m_Web_link;
-}
-
-void Collection::setWebLink(const utility::string_t& value)
-{
-    m_Web_link = value;
-    m_Web_linkIsSet = true;
-}
-
-bool Collection::webLinkIsSet() const
-{
-    return m_Web_linkIsSet;
-}
-
-void Collection::unsetWeb_link()
-{
-    m_Web_linkIsSet = false;
-}
-double Collection::getSupply() const
-{
-    return m_Supply;
-}
-
-void Collection::setSupply(double value)
-{
-    m_Supply = value;
-    m_SupplyIsSet = true;
-}
-
-bool Collection::supplyIsSet() const
-{
-    return m_SupplyIsSet;
-}
-
-void Collection::unsetSupply()
-{
-    m_SupplyIsSet = false;
-}
-std::shared_ptr<Object> Collection::getCustomPropertyProps() const
-{
-    return m_Custom_property_props;
-}
-
-void Collection::setCustomPropertyProps(const std::shared_ptr<Object>& value)
-{
-    m_Custom_property_props = value;
-    m_Custom_property_propsIsSet = true;
-}
-
-bool Collection::customPropertyPropsIsSet() const
-{
-    return m_Custom_property_propsIsSet;
-}
-
-void Collection::unsetCustom_property_props()
-{
-    m_Custom_property_propsIsSet = false;
-}
-std::vector<utility::string_t>& Collection::getSocialLinks()
+std::vector<utility::string_t>& Game::getSocialLinks()
 {
     return m_Social_links;
 }
 
-void Collection::setSocialLinks(const std::vector<utility::string_t>& value)
+void Game::setSocialLinks(const std::vector<utility::string_t>& value)
 {
     m_Social_links = value;
     m_Social_linksIsSet = true;
 }
 
-bool Collection::socialLinksIsSet() const
+bool Game::socialLinksIsSet() const
 {
     return m_Social_linksIsSet;
 }
 
-void Collection::unsetSocial_links()
+void Game::unsetSocial_links()
 {
     m_Social_linksIsSet = false;
 }
-std::shared_ptr<Object> Collection::getCustomAssetProps() const
+utility::string_t Game::getMainMedia() const
 {
-    return m_Custom_asset_props;
+    return m_Main_media;
 }
 
-void Collection::setCustomAssetProps(const std::shared_ptr<Object>& value)
+void Game::setMainMedia(const utility::string_t& value)
 {
-    m_Custom_asset_props = value;
-    m_Custom_asset_propsIsSet = true;
+    m_Main_media = value;
+    m_Main_mediaIsSet = true;
 }
 
-bool Collection::customAssetPropsIsSet() const
+bool Game::mainMediaIsSet() const
 {
-    return m_Custom_asset_propsIsSet;
+    return m_Main_mediaIsSet;
 }
 
-void Collection::unsetCustom_asset_props()
+void Game::unsetMain_media()
 {
-    m_Custom_asset_propsIsSet = false;
+    m_Main_mediaIsSet = false;
 }
-std::shared_ptr<Object> Collection::getCategories() const
+utility::string_t Game::getUrl() const
 {
-    return m_Categories;
-}
-
-void Collection::setCategories(const std::shared_ptr<Object>& value)
-{
-    m_Categories = value;
-    m_CategoriesIsSet = true;
+    return m_Url;
 }
 
-bool Collection::categoriesIsSet() const
+void Game::setUrl(const utility::string_t& value)
 {
-    return m_CategoriesIsSet;
+    m_Url = value;
+    m_UrlIsSet = true;
 }
 
-void Collection::unsetCategories()
+bool Game::urlIsSet() const
 {
-    m_CategoriesIsSet = false;
+    return m_UrlIsSet;
 }
-utility::string_t Collection::getStatus() const
+
+void Game::unsetUrl()
+{
+    m_UrlIsSet = false;
+}
+utility::string_t Game::getWebLink() const
+{
+    return m_Web_link;
+}
+
+void Game::setWebLink(const utility::string_t& value)
+{
+    m_Web_link = value;
+    m_Web_linkIsSet = true;
+}
+
+bool Game::webLinkIsSet() const
+{
+    return m_Web_linkIsSet;
+}
+
+void Game::unsetWeb_link()
+{
+    m_Web_linkIsSet = false;
+}
+utility::string_t Game::getDiscord() const
+{
+    return m_Discord;
+}
+
+void Game::setDiscord(const utility::string_t& value)
+{
+    m_Discord = value;
+    m_DiscordIsSet = true;
+}
+
+bool Game::discordIsSet() const
+{
+    return m_DiscordIsSet;
+}
+
+void Game::unsetDiscord()
+{
+    m_DiscordIsSet = false;
+}
+utility::string_t Game::getTwitter() const
+{
+    return m_Twitter;
+}
+
+void Game::setTwitter(const utility::string_t& value)
+{
+    m_Twitter = value;
+    m_TwitterIsSet = true;
+}
+
+bool Game::twitterIsSet() const
+{
+    return m_TwitterIsSet;
+}
+
+void Game::unsetTwitter()
+{
+    m_TwitterIsSet = false;
+}
+utility::string_t Game::getInstagram() const
+{
+    return m_Instagram;
+}
+
+void Game::setInstagram(const utility::string_t& value)
+{
+    m_Instagram = value;
+    m_InstagramIsSet = true;
+}
+
+bool Game::instagramIsSet() const
+{
+    return m_InstagramIsSet;
+}
+
+void Game::unsetInstagram()
+{
+    m_InstagramIsSet = false;
+}
+utility::string_t Game::getContactPhone() const
+{
+    return m_Contact_phone;
+}
+
+void Game::setContactPhone(const utility::string_t& value)
+{
+    m_Contact_phone = value;
+    m_Contact_phoneIsSet = true;
+}
+
+bool Game::contactPhoneIsSet() const
+{
+    return m_Contact_phoneIsSet;
+}
+
+void Game::unsetContact_phone()
+{
+    m_Contact_phoneIsSet = false;
+}
+utility::string_t Game::getContactEmail() const
+{
+    return m_Contact_email;
+}
+
+void Game::setContactEmail(const utility::string_t& value)
+{
+    m_Contact_email = value;
+    m_Contact_emailIsSet = true;
+}
+
+bool Game::contactEmailIsSet() const
+{
+    return m_Contact_emailIsSet;
+}
+
+void Game::unsetContact_email()
+{
+    m_Contact_emailIsSet = false;
+}
+utility::string_t Game::getStatus() const
 {
     return m_Status;
 }
 
-void Collection::setStatus(const utility::string_t& value)
+void Game::setStatus(const utility::string_t& value)
 {
     m_Status = value;
     m_StatusIsSet = true;
 }
 
-bool Collection::statusIsSet() const
+bool Game::statusIsSet() const
 {
     return m_StatusIsSet;
 }
 
-void Collection::unsetStatus()
+void Game::unsetStatus()
 {
     m_StatusIsSet = false;
 }
-utility::string_t Collection::getAccountId() const
+utility::string_t Game::getAccountId() const
 {
     return m_Account_id;
 }
 
-void Collection::setAccountId(const utility::string_t& value)
+void Game::setAccountId(const utility::string_t& value)
 {
     m_Account_id = value;
     m_Account_idIsSet = true;
 }
 
-bool Collection::accountIdIsSet() const
+bool Game::accountIdIsSet() const
 {
     return m_Account_idIsSet;
 }
 
-void Collection::unsetAccount_id()
+void Game::unsetAccount_id()
 {
     m_Account_idIsSet = false;
 }
-utility::string_t Collection::getGameId() const
-{
-    return m_Game_id;
-}
-
-void Collection::setGameId(const utility::string_t& value)
-{
-    m_Game_id = value;
-    m_Game_idIsSet = true;
-}
-
-bool Collection::gameIdIsSet() const
-{
-    return m_Game_idIsSet;
-}
-
-void Collection::unsetGame_id()
-{
-    m_Game_idIsSet = false;
-}
-utility::datetime Collection::getCreatedOn() const
+utility::datetime Game::getCreatedOn() const
 {
     return m_Created_on;
 }
 
-void Collection::setCreatedOn(const utility::datetime& value)
+void Game::setCreatedOn(const utility::datetime& value)
 {
     m_Created_on = value;
     m_Created_onIsSet = true;
 }
 
-bool Collection::createdOnIsSet() const
+bool Game::createdOnIsSet() const
 {
     return m_Created_onIsSet;
 }
 
-void Collection::unsetCreated_on()
+void Game::unsetCreated_on()
 {
     m_Created_onIsSet = false;
 }
-utility::datetime Collection::getModifiedOn() const
+utility::datetime Game::getModifiedOn() const
 {
     return m_Modified_on;
 }
 
-void Collection::setModifiedOn(const utility::datetime& value)
+void Game::setModifiedOn(const utility::datetime& value)
 {
     m_Modified_on = value;
     m_Modified_onIsSet = true;
 }
 
-bool Collection::modifiedOnIsSet() const
+bool Game::modifiedOnIsSet() const
 {
     return m_Modified_onIsSet;
 }
 
-void Collection::unsetModified_on()
+void Game::unsetModified_on()
 {
     m_Modified_onIsSet = false;
 }
-utility::string_t Collection::getCreatedBy() const
+utility::string_t Game::getCreatedBy() const
 {
     return m_Created_by;
 }
 
-void Collection::setCreatedBy(const utility::string_t& value)
+void Game::setCreatedBy(const utility::string_t& value)
 {
     m_Created_by = value;
     m_Created_byIsSet = true;
 }
 
-bool Collection::createdByIsSet() const
+bool Game::createdByIsSet() const
 {
     return m_Created_byIsSet;
 }
 
-void Collection::unsetCreated_by()
+void Game::unsetCreated_by()
 {
     m_Created_byIsSet = false;
 }
-utility::string_t Collection::getModifiedBy() const
+utility::string_t Game::getModifiedBy() const
 {
     return m_Modified_by;
 }
 
-void Collection::setModifiedBy(const utility::string_t& value)
+void Game::setModifiedBy(const utility::string_t& value)
 {
     m_Modified_by = value;
     m_Modified_byIsSet = true;
 }
 
-bool Collection::modifiedByIsSet() const
+bool Game::modifiedByIsSet() const
 {
     return m_Modified_byIsSet;
 }
 
-void Collection::unsetModified_by()
+void Game::unsetModified_by()
 {
     m_Modified_byIsSet = false;
 }

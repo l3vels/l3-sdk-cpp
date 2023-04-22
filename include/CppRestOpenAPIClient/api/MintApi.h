@@ -23,8 +23,8 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
-#include "CppRestOpenAPIClient/model/MintBatchDto.h"
-#include "CppRestOpenAPIClient/model/MintDto.h"
+#include "CppRestOpenAPIClient/model/MintBatchInput.h"
+#include "CppRestOpenAPIClient/model/MintInput.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -48,11 +48,11 @@ public:
     /// <remarks>
     /// Airdrop asset to player
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="mintDto"></param>
-    pplx::task<void> mintControllerAirdrop(
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="mintInput"></param>
+    pplx::task<void> airdropAssetToPlayer(
         utility::string_t authorization,
-        std::shared_ptr<MintDto> mintDto
+        std::shared_ptr<MintInput> mintInput
     ) const;
     /// <summary>
     /// Award asset to player
@@ -60,47 +60,11 @@ public:
     /// <remarks>
     /// Award asset to player
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="mintDto"></param>
-    pplx::task<void> mintControllerAward(
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="mintInput"></param>
+    pplx::task<void> awardAssetToPlayer(
         utility::string_t authorization,
-        std::shared_ptr<MintDto> mintDto
-    ) const;
-    /// <summary>
-    /// Mint asset
-    /// </summary>
-    /// <remarks>
-    /// Mint an asset by admin to player
-    /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="mintDto"></param>
-    pplx::task<void> mintControllerMint(
-        utility::string_t authorization,
-        std::shared_ptr<MintDto> mintDto
-    ) const;
-    /// <summary>
-    /// Batch mint assets
-    /// </summary>
-    /// <remarks>
-    /// Batch mint assets by admin to player
-    /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="mintBatchDto"></param>
-    pplx::task<void> mintControllerMintBatch(
-        utility::string_t authorization,
-        std::shared_ptr<MintBatchDto> mintBatchDto
-    ) const;
-    /// <summary>
-    /// Mint asset by player
-    /// </summary>
-    /// <remarks>
-    /// Mint asset by player. Player must have enough balance to mint.
-    /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="mintDto"></param>
-    pplx::task<void> mintControllerPlayerMint(
-        utility::string_t authorization,
-        std::shared_ptr<MintDto> mintDto
+        std::shared_ptr<MintInput> mintInput
     ) const;
     /// <summary>
     /// Batch mint assets by player
@@ -108,11 +72,47 @@ public:
     /// <remarks>
     /// Batch mint assets by player. Player must have enough balance to mint.
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="mintBatchDto"></param>
-    pplx::task<void> mintControllerPlayerMintBatch(
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="mintBatchInput"></param>
+    pplx::task<void> batchMintAssetByPlayer(
         utility::string_t authorization,
-        std::shared_ptr<MintBatchDto> mintBatchDto
+        std::shared_ptr<MintBatchInput> mintBatchInput
+    ) const;
+    /// <summary>
+    /// Mint asset
+    /// </summary>
+    /// <remarks>
+    /// Mint an asset by admin to player
+    /// </remarks>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="mintInput"></param>
+    pplx::task<void> mintAsset(
+        utility::string_t authorization,
+        std::shared_ptr<MintInput> mintInput
+    ) const;
+    /// <summary>
+    /// Mint asset by player
+    /// </summary>
+    /// <remarks>
+    /// Mint asset by player. Player must have enough balance to mint.
+    /// </remarks>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="mintInput"></param>
+    pplx::task<void> mintAssetByPlayer(
+        utility::string_t authorization,
+        std::shared_ptr<MintInput> mintInput
+    ) const;
+    /// <summary>
+    /// Batch mint assets
+    /// </summary>
+    /// <remarks>
+    /// Batch mint assets by admin to player
+    /// </remarks>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="mintBatchInput"></param>
+    pplx::task<void> mintBatchAsset(
+        utility::string_t authorization,
+        std::shared_ptr<MintBatchInput> mintBatchInput
     ) const;
 
 protected:

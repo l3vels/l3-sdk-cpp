@@ -11,19 +11,18 @@
  */
 
 /*
- * Collection.h
+ * Game.h
  *
  * 
  */
 
-#ifndef MODELS_Collection_H_
-#define MODELS_Collection_H_
+#ifndef MODELS_Game_H_
+#define MODELS_Game_H_
 
 
 #include "CppRestOpenAPIClient/ModelBase.h"
 
 #include <cpprest/details/basic_types.h>
-#include "CppRestOpenAPIClient/Object.h"
 #include <vector>
 
 namespace models {
@@ -32,12 +31,12 @@ namespace models {
 /// <summary>
 /// 
 /// </summary>
-class  Collection
+class  Game
     : public ModelBase
 {
 public:
-    Collection();
-    virtual ~Collection();
+    Game();
+    virtual ~Game();
 
     /////////////////////////////////////////////
     /// ModelBase overrides
@@ -51,10 +50,10 @@ public:
     bool fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& namePrefix) override;
 
     /////////////////////////////////////////////
-    /// Collection members
+    /// Game members
 
     /// <summary>
-    /// The unique identifier for the collection entity.
+    /// The unique identifier for the Game entity.
     /// </summary>
     utility::string_t getId() const;
     bool idIsSet() const;
@@ -63,16 +62,7 @@ public:
     void setId(const utility::string_t& value);
 
     /// <summary>
-    /// The unique identifier that can be provided by game studio.
-    /// </summary>
-    utility::string_t getUniqueId() const;
-    bool uniqueIdIsSet() const;
-    void unsetUnique_id();
-
-    void setUniqueId(const utility::string_t& value);
-
-    /// <summary>
-    /// The name of the collection.
+    /// The name of the Game.
     /// </summary>
     utility::string_t getName() const;
     bool nameIsSet() const;
@@ -81,7 +71,7 @@ public:
     void setName(const utility::string_t& value);
 
     /// <summary>
-    /// A brief description of the collection.
+    /// A brief description of the Game.
     /// </summary>
     utility::string_t getDescription() const;
     bool descriptionIsSet() const;
@@ -90,7 +80,16 @@ public:
     void setDescription(const utility::string_t& value);
 
     /// <summary>
-    /// An image representing the collection&#39;s logo.
+    /// The category or genre of the Game.
+    /// </summary>
+    utility::string_t getCategory() const;
+    bool categoryIsSet() const;
+    void unsetCategory();
+
+    void setCategory(const utility::string_t& value);
+
+    /// <summary>
+    /// The logo or icon associated with the Game.
     /// </summary>
     utility::string_t getLogoImage() const;
     bool logoImageIsSet() const;
@@ -108,51 +107,6 @@ public:
     void setMedias(const std::vector<utility::string_t>& value);
 
     /// <summary>
-    /// The main or featured image associated with the game. You can set it from the dashboard as main image.
-    /// </summary>
-    utility::string_t getMainMedia() const;
-    bool mainMediaIsSet() const;
-    void unsetMain_media();
-
-    void setMainMedia(const utility::string_t& value);
-
-    /// <summary>
-    /// A unique URL for the collection on the L3vels platform.
-    /// </summary>
-    utility::string_t getUrl() const;
-    bool urlIsSet() const;
-    void unsetUrl();
-
-    void setUrl(const utility::string_t& value);
-
-    /// <summary>
-    /// A URL link to the collection&#39;s webpage.
-    /// </summary>
-    utility::string_t getWebLink() const;
-    bool webLinkIsSet() const;
-    void unsetWeb_link();
-
-    void setWebLink(const utility::string_t& value);
-
-    /// <summary>
-    /// The supply represents the number of assets that are available within the Collection.
-    /// </summary>
-    double getSupply() const;
-    bool supplyIsSet() const;
-    void unsetSupply();
-
-    void setSupply(double value);
-
-    /// <summary>
-    /// Custom properties that are unique to the collection and defined by the developer to categorize and filter them.
-    /// </summary>
-    std::shared_ptr<Object> getCustomPropertyProps() const;
-    bool customPropertyPropsIsSet() const;
-    void unsetCustom_property_props();
-
-    void setCustomPropertyProps(const std::shared_ptr<Object>& value);
-
-    /// <summary>
     /// Additional social links associated with the collection
     /// </summary>
     std::vector<utility::string_t>& getSocialLinks();
@@ -162,25 +116,79 @@ public:
     void setSocialLinks(const std::vector<utility::string_t>& value);
 
     /// <summary>
-    /// Custom assets fields associated with the collection.
+    /// The main or featured image associated with the Game. You can set it from the Dashboard as main image.
     /// </summary>
-    std::shared_ptr<Object> getCustomAssetProps() const;
-    bool customAssetPropsIsSet() const;
-    void unsetCustom_asset_props();
+    utility::string_t getMainMedia() const;
+    bool mainMediaIsSet() const;
+    void unsetMain_media();
 
-    void setCustomAssetProps(const std::shared_ptr<Object>& value);
+    void setMainMedia(const utility::string_t& value);
 
     /// <summary>
-    /// The category or categories that the collection belongs to.
+    /// A unique URL for the game on the L3vels platform.
     /// </summary>
-    std::shared_ptr<Object> getCategories() const;
-    bool categoriesIsSet() const;
-    void unsetCategories();
+    utility::string_t getUrl() const;
+    bool urlIsSet() const;
+    void unsetUrl();
 
-    void setCategories(const std::shared_ptr<Object>& value);
+    void setUrl(const utility::string_t& value);
 
     /// <summary>
-    /// The current status of the collection. Possible values are: Draft, Active
+    /// The URL for the Game&#39;s website or landing page.
+    /// </summary>
+    utility::string_t getWebLink() const;
+    bool webLinkIsSet() const;
+    void unsetWeb_link();
+
+    void setWebLink(const utility::string_t& value);
+
+    /// <summary>
+    /// The link to the Game&#39;s Discord server.
+    /// </summary>
+    utility::string_t getDiscord() const;
+    bool discordIsSet() const;
+    void unsetDiscord();
+
+    void setDiscord(const utility::string_t& value);
+
+    /// <summary>
+    /// The link to the Game&#39;s official Twitter account.
+    /// </summary>
+    utility::string_t getTwitter() const;
+    bool twitterIsSet() const;
+    void unsetTwitter();
+
+    void setTwitter(const utility::string_t& value);
+
+    /// <summary>
+    /// The link to the Game&#39;s official Instagram account.
+    /// </summary>
+    utility::string_t getInstagram() const;
+    bool instagramIsSet() const;
+    void unsetInstagram();
+
+    void setInstagram(const utility::string_t& value);
+
+    /// <summary>
+    ///  A phone number for contacting the Game&#39;s developers or support team.
+    /// </summary>
+    utility::string_t getContactPhone() const;
+    bool contactPhoneIsSet() const;
+    void unsetContact_phone();
+
+    void setContactPhone(const utility::string_t& value);
+
+    /// <summary>
+    /// An email address for contacting the Game&#39;s developers or support team.
+    /// </summary>
+    utility::string_t getContactEmail() const;
+    bool contactEmailIsSet() const;
+    void unsetContact_email();
+
+    void setContactEmail(const utility::string_t& value);
+
+    /// <summary>
+    /// The current status of the Game, such as \&quot;Draft\&quot;, \&quot;Active\&quot;, or \&quot;Inactive\&quot;.
     /// </summary>
     utility::string_t getStatus() const;
     bool statusIsSet() const;
@@ -189,7 +197,7 @@ public:
     void setStatus(const utility::string_t& value);
 
     /// <summary>
-    /// The unique identifier of the account that the Collection belongs to.
+    ///  The unique identifier of the account that the Game belongs to. This allows developers to manage multiple Games across multiple accounts.
     /// </summary>
     utility::string_t getAccountId() const;
     bool accountIdIsSet() const;
@@ -198,16 +206,7 @@ public:
     void setAccountId(const utility::string_t& value);
 
     /// <summary>
-    /// The unique identifier of the game that the collection is associated with. This allows developers to organize their collections by game and helps with tracking and reporting.
-    /// </summary>
-    utility::string_t getGameId() const;
-    bool gameIdIsSet() const;
-    void unsetGame_id();
-
-    void setGameId(const utility::string_t& value);
-
-    /// <summary>
-    /// The date when the collection was created.
+    /// The date and time that the Game entity was created.
     /// </summary>
     utility::datetime getCreatedOn() const;
     bool createdOnIsSet() const;
@@ -216,7 +215,7 @@ public:
     void setCreatedOn(const utility::datetime& value);
 
     /// <summary>
-    /// The date when the collection was last modified.
+    /// The date and time that the Game entity was last modified.
     /// </summary>
     utility::datetime getModifiedOn() const;
     bool modifiedOnIsSet() const;
@@ -225,7 +224,7 @@ public:
     void setModifiedOn(const utility::datetime& value);
 
     /// <summary>
-    /// The Id of the user who created the collection.
+    /// The user or system that created the Game entity.
     /// </summary>
     utility::string_t getCreatedBy() const;
     bool createdByIsSet() const;
@@ -234,7 +233,7 @@ public:
     void setCreatedBy(const utility::string_t& value);
 
     /// <summary>
-    /// The Id of the user who last modified the collection.
+    /// The user or system that last modified the Game entity.
     /// </summary>
     utility::string_t getModifiedBy() const;
     bool modifiedByIsSet() const;
@@ -246,38 +245,38 @@ public:
 protected:
     utility::string_t m_Id;
     bool m_IdIsSet;
-    utility::string_t m_Unique_id;
-    bool m_Unique_idIsSet;
     utility::string_t m_Name;
     bool m_NameIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
+    utility::string_t m_Category;
+    bool m_CategoryIsSet;
     utility::string_t m_Logo_image;
     bool m_Logo_imageIsSet;
     std::vector<utility::string_t> m_Medias;
     bool m_MediasIsSet;
+    std::vector<utility::string_t> m_Social_links;
+    bool m_Social_linksIsSet;
     utility::string_t m_Main_media;
     bool m_Main_mediaIsSet;
     utility::string_t m_Url;
     bool m_UrlIsSet;
     utility::string_t m_Web_link;
     bool m_Web_linkIsSet;
-    double m_Supply;
-    bool m_SupplyIsSet;
-    std::shared_ptr<Object> m_Custom_property_props;
-    bool m_Custom_property_propsIsSet;
-    std::vector<utility::string_t> m_Social_links;
-    bool m_Social_linksIsSet;
-    std::shared_ptr<Object> m_Custom_asset_props;
-    bool m_Custom_asset_propsIsSet;
-    std::shared_ptr<Object> m_Categories;
-    bool m_CategoriesIsSet;
+    utility::string_t m_Discord;
+    bool m_DiscordIsSet;
+    utility::string_t m_Twitter;
+    bool m_TwitterIsSet;
+    utility::string_t m_Instagram;
+    bool m_InstagramIsSet;
+    utility::string_t m_Contact_phone;
+    bool m_Contact_phoneIsSet;
+    utility::string_t m_Contact_email;
+    bool m_Contact_emailIsSet;
     utility::string_t m_Status;
     bool m_StatusIsSet;
     utility::string_t m_Account_id;
     bool m_Account_idIsSet;
-    utility::string_t m_Game_id;
-    bool m_Game_idIsSet;
     utility::datetime m_Created_on;
     bool m_Created_onIsSet;
     utility::datetime m_Modified_on;
@@ -291,4 +290,4 @@ protected:
 
 }
 
-#endif /* MODELS_Collection_H_ */
+#endif /* MODELS_Game_H_ */

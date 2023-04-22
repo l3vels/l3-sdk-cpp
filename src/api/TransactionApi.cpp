@@ -33,14 +33,14 @@ TransactionApi::~TransactionApi()
 {
 }
 
-pplx::task<std::shared_ptr<Transaction>> TransactionApi::transactionControllerTransactionById(utility::string_t authorization, utility::string_t id, utility::string_t projectId) const
+pplx::task<std::shared_ptr<Transaction>> TransactionApi::getTransactionById(utility::string_t authorization, utility::string_t id, utility::string_t gameId) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/transaction/{project_id}/{id}");
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/transaction/{game_id}/{id}");
     boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(id)));
-boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("project_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(projectId)));
+boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("game_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(gameId)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );
@@ -69,7 +69,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TransactionApi->transactionControllerTransactionById does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("TransactionApi->getTransactionById does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -99,7 +99,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TransactionApi->transactionControllerTransactionById does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("TransactionApi->getTransactionById does not consume any supported media type"));
     }
 
 
@@ -119,7 +119,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling transactionControllerTransactionById: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getTransactionById: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -130,7 +130,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling transactionControllerTransactionById: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getTransactionById: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -154,13 +154,13 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling transactionControllerTransactionById: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getTransactionById: unsupported response type"));
         }
 
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<Transaction>> TransactionApi::transactionControllerTransactions(utility::string_t authorization, utility::string_t projectId, boost::optional<utility::string_t> collectionId, boost::optional<utility::string_t> playerId, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<utility::string_t> searchText, boost::optional<double> limit, boost::optional<double> page) const
+pplx::task<std::shared_ptr<Transaction>> TransactionApi::getTransactions(utility::string_t authorization, utility::string_t gameId, boost::optional<utility::string_t> collectionId, boost::optional<utility::string_t> playerId, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> order, boost::optional<utility::string_t> searchText, boost::optional<double> limit, boost::optional<double> page) const
 {
 
 
@@ -194,7 +194,7 @@ pplx::task<std::shared_ptr<Transaction>> TransactionApi::transactionControllerTr
     }
     else
     {
-        throw ApiException(400, utility::conversions::to_string_t("TransactionApi->transactionControllerTransactions does not produce any supported media type"));
+        throw ApiException(400, utility::conversions::to_string_t("TransactionApi->getTransactions does not produce any supported media type"));
     }
 
     localVarHeaderParams[utility::conversions::to_string_t("Accept")] = localVarResponseHttpContentType;
@@ -205,7 +205,7 @@ pplx::task<std::shared_ptr<Transaction>> TransactionApi::transactionControllerTr
         localVarHeaderParams[utility::conversions::to_string_t("Authorization")] = ApiClient::parameterToString(authorization);
     }
     {
-        localVarQueryParams[utility::conversions::to_string_t("project_id")] = ApiClient::parameterToString(projectId);
+        localVarQueryParams[utility::conversions::to_string_t("game_id")] = ApiClient::parameterToString(gameId);
     }
     if (collectionId)
     {
@@ -255,7 +255,7 @@ pplx::task<std::shared_ptr<Transaction>> TransactionApi::transactionControllerTr
     }
     else
     {
-        throw ApiException(415, utility::conversions::to_string_t("TransactionApi->transactionControllerTransactions does not consume any supported media type"));
+        throw ApiException(415, utility::conversions::to_string_t("TransactionApi->getTransactions does not consume any supported media type"));
     }
 
 
@@ -275,7 +275,7 @@ pplx::task<std::shared_ptr<Transaction>> TransactionApi::transactionControllerTr
         if (localVarResponse.status_code() >= 400)
         {
             throw ApiException(localVarResponse.status_code()
-                , utility::conversions::to_string_t("error calling transactionControllerTransactions: ") + localVarResponse.reason_phrase()
+                , utility::conversions::to_string_t("error calling getTransactions: ") + localVarResponse.reason_phrase()
                 , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
         }
 
@@ -286,7 +286,7 @@ pplx::task<std::shared_ptr<Transaction>> TransactionApi::transactionControllerTr
             if( localVarContentType.find(localVarResponseHttpContentType) == std::string::npos )
             {
                 throw ApiException(500
-                    , utility::conversions::to_string_t("error calling transactionControllerTransactions: unexpected response type: ") + localVarContentType
+                    , utility::conversions::to_string_t("error calling getTransactions: unexpected response type: ") + localVarContentType
                     , std::make_shared<std::stringstream>(localVarResponse.extract_utf8string(true).get()));
             }
         }
@@ -310,7 +310,7 @@ pplx::task<std::shared_ptr<Transaction>> TransactionApi::transactionControllerTr
         else
         {
             throw ApiException(500
-                , utility::conversions::to_string_t("error calling transactionControllerTransactions: unsupported response type"));
+                , utility::conversions::to_string_t("error calling getTransactions: unsupported response type"));
         }
 
         return localVarResult;

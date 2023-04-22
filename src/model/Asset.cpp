@@ -47,19 +47,19 @@ Asset::Asset()
     m_MediasIsSet = false;
     m_Main_media = utility::conversions::to_string_t("");
     m_Main_mediaIsSet = false;
-    m_Account_id = 0.0;
+    m_Account_id = utility::conversions::to_string_t("");
     m_Account_idIsSet = false;
-    m_Project_id = utility::conversions::to_string_t("");
-    m_Project_idIsSet = false;
+    m_Game_id = utility::conversions::to_string_t("");
+    m_Game_idIsSet = false;
     m_Collection_id = utility::conversions::to_string_t("");
     m_Collection_idIsSet = false;
     m_Created_on = utility::datetime();
     m_Created_onIsSet = false;
     m_Modified_on = utility::datetime();
     m_Modified_onIsSet = false;
-    m_Created_by = 0.0;
+    m_Created_by = utility::conversions::to_string_t("");
     m_Created_byIsSet = false;
-    m_Modified_by = 0.0;
+    m_Modified_by = utility::conversions::to_string_t("");
     m_Modified_byIsSet = false;
 }
 
@@ -141,9 +141,9 @@ web::json::value Asset::toJson() const
     {
         val[utility::conversions::to_string_t(U("account_id"))] = ModelBase::toJson(m_Account_id);
     }
-    if(m_Project_idIsSet)
+    if(m_Game_idIsSet)
     {
-        val[utility::conversions::to_string_t(U("project_id"))] = ModelBase::toJson(m_Project_id);
+        val[utility::conversions::to_string_t(U("game_id"))] = ModelBase::toJson(m_Game_id);
     }
     if(m_Collection_idIsSet)
     {
@@ -328,19 +328,19 @@ bool Asset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("account_id")));
         if(!fieldValue.is_null())
         {
-            double refVal_setAccountId;
+            utility::string_t refVal_setAccountId;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAccountId);
             setAccountId(refVal_setAccountId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t(U("project_id"))))
+    if(val.has_field(utility::conversions::to_string_t(U("game_id"))))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("project_id")));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("game_id")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setProjectId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setProjectId);
-            setProjectId(refVal_setProjectId);
+            utility::string_t refVal_setGameId;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setGameId);
+            setGameId(refVal_setGameId);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("collection_id"))))
@@ -378,7 +378,7 @@ bool Asset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("created_by")));
         if(!fieldValue.is_null())
         {
-            double refVal_setCreatedBy;
+            utility::string_t refVal_setCreatedBy;
             ok &= ModelBase::fromJson(fieldValue, refVal_setCreatedBy);
             setCreatedBy(refVal_setCreatedBy);
         }
@@ -388,7 +388,7 @@ bool Asset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("modified_by")));
         if(!fieldValue.is_null())
         {
-            double refVal_setModifiedBy;
+            utility::string_t refVal_setModifiedBy;
             ok &= ModelBase::fromJson(fieldValue, refVal_setModifiedBy);
             setModifiedBy(refVal_setModifiedBy);
         }
@@ -467,9 +467,9 @@ void Asset::toMultipart(std::shared_ptr<MultipartFormData> multipart, const util
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("account_id")), m_Account_id));
     }
-    if(m_Project_idIsSet)
+    if(m_Game_idIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("project_id")), m_Project_id));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("game_id")), m_Game_id));
     }
     if(m_Collection_idIsSet)
     {
@@ -594,15 +594,15 @@ bool Asset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("account_id"))))
     {
-        double refVal_setAccountId;
+        utility::string_t refVal_setAccountId;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("account_id"))), refVal_setAccountId );
         setAccountId(refVal_setAccountId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t(U("project_id"))))
+    if(multipart->hasContent(utility::conversions::to_string_t(U("game_id"))))
     {
-        utility::string_t refVal_setProjectId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("project_id"))), refVal_setProjectId );
-        setProjectId(refVal_setProjectId);
+        utility::string_t refVal_setGameId;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("game_id"))), refVal_setGameId );
+        setGameId(refVal_setGameId);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("collection_id"))))
     {
@@ -624,13 +624,13 @@ bool Asset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("created_by"))))
     {
-        double refVal_setCreatedBy;
+        utility::string_t refVal_setCreatedBy;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("created_by"))), refVal_setCreatedBy );
         setCreatedBy(refVal_setCreatedBy);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("modified_by"))))
     {
-        double refVal_setModifiedBy;
+        utility::string_t refVal_setModifiedBy;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("modified_by"))), refVal_setModifiedBy );
         setModifiedBy(refVal_setModifiedBy);
     }
@@ -937,12 +937,12 @@ void Asset::unsetMain_media()
 {
     m_Main_mediaIsSet = false;
 }
-double Asset::getAccountId() const
+utility::string_t Asset::getAccountId() const
 {
     return m_Account_id;
 }
 
-void Asset::setAccountId(double value)
+void Asset::setAccountId(const utility::string_t& value)
 {
     m_Account_id = value;
     m_Account_idIsSet = true;
@@ -957,25 +957,25 @@ void Asset::unsetAccount_id()
 {
     m_Account_idIsSet = false;
 }
-utility::string_t Asset::getProjectId() const
+utility::string_t Asset::getGameId() const
 {
-    return m_Project_id;
+    return m_Game_id;
 }
 
-void Asset::setProjectId(const utility::string_t& value)
+void Asset::setGameId(const utility::string_t& value)
 {
-    m_Project_id = value;
-    m_Project_idIsSet = true;
+    m_Game_id = value;
+    m_Game_idIsSet = true;
 }
 
-bool Asset::projectIdIsSet() const
+bool Asset::gameIdIsSet() const
 {
-    return m_Project_idIsSet;
+    return m_Game_idIsSet;
 }
 
-void Asset::unsetProject_id()
+void Asset::unsetGame_id()
 {
-    m_Project_idIsSet = false;
+    m_Game_idIsSet = false;
 }
 utility::string_t Asset::getCollectionId() const
 {
@@ -1037,12 +1037,12 @@ void Asset::unsetModified_on()
 {
     m_Modified_onIsSet = false;
 }
-double Asset::getCreatedBy() const
+utility::string_t Asset::getCreatedBy() const
 {
     return m_Created_by;
 }
 
-void Asset::setCreatedBy(double value)
+void Asset::setCreatedBy(const utility::string_t& value)
 {
     m_Created_by = value;
     m_Created_byIsSet = true;
@@ -1057,12 +1057,12 @@ void Asset::unsetCreated_by()
 {
     m_Created_byIsSet = false;
 }
-double Asset::getModifiedBy() const
+utility::string_t Asset::getModifiedBy() const
 {
     return m_Modified_by;
 }
 
-void Asset::setModifiedBy(double value)
+void Asset::setModifiedBy(const utility::string_t& value)
 {
     m_Modified_by = value;
     m_Modified_byIsSet = true;

@@ -23,7 +23,7 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 
-#include "CppRestOpenAPIClient/model/Project.h"
+#include "CppRestOpenAPIClient/model/Game.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -45,11 +45,11 @@ public:
     /// Retrieve Game
     /// </summary>
     /// <remarks>
-    /// Get game/project by ID created on the platform.
+    /// Get Game by ID created on the platform.
     /// </remarks>
-    /// <param name="authorization">API key is associated with multiple projects. Please include it in to use developers API.</param>
-    /// <param name="id">Game or Project Id</param>
-    pplx::task<std::shared_ptr<Project>> getGameById(
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="id">Game or Game Id</param>
+    pplx::task<std::shared_ptr<Game>> getGameById(
         utility::string_t authorization,
         utility::string_t id
     ) const;
