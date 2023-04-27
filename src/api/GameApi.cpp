@@ -33,13 +33,13 @@ GameApi::~GameApi()
 {
 }
 
-pplx::task<std::shared_ptr<Game>> GameApi::getGameById(utility::string_t authorization, utility::string_t id) const
+pplx::task<std::shared_ptr<Game>> GameApi::getGameById(utility::string_t authorization, utility::string_t gameId) const
 {
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
-    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/game/{id}");
-    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(id)));
+    utility::string_t localVarPath = utility::conversions::to_string_t("/v1/game/{game_id}");
+    boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utility::conversions::to_string_t("game_id") + utility::conversions::to_string_t("}"), web::uri::encode(ApiClient::parameterToString(gameId)));
 
     std::map<utility::string_t, utility::string_t> localVarQueryParams;
     std::map<utility::string_t, utility::string_t> localVarHeaderParams( localVarApiConfiguration->getDefaultHeaders() );

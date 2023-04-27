@@ -54,15 +54,6 @@ public:
     /// MintInput members
 
     /// <summary>
-    /// Contract ID
-    /// </summary>
-    utility::string_t getContractId() const;
-    bool contractIdIsSet() const;
-    void unsetContract_id();
-
-    void setContractId(const utility::string_t& value);
-
-    /// <summary>
     /// Game ID. Example: Call of Duty
     /// </summary>
     utility::string_t getGameId() const;
@@ -109,8 +100,6 @@ public:
 
 
 protected:
-    utility::string_t m_Contract_id;
-    bool m_Contract_idIsSet;
     utility::string_t m_Game_id;
     bool m_Game_idIsSet;
     utility::string_t m_Collection_id;

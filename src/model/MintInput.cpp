@@ -20,8 +20,6 @@ namespace models {
 
 MintInput::MintInput()
 {
-    m_Contract_id = utility::conversions::to_string_t("");
-    m_Contract_idIsSet = false;
     m_Game_id = utility::conversions::to_string_t("");
     m_Game_idIsSet = false;
     m_Collection_id = utility::conversions::to_string_t("");
@@ -47,10 +45,6 @@ web::json::value MintInput::toJson() const
 
     web::json::value val = web::json::value::object();
     
-    if(m_Contract_idIsSet)
-    {
-        val[utility::conversions::to_string_t(U("contract_id"))] = ModelBase::toJson(m_Contract_id);
-    }
     if(m_Game_idIsSet)
     {
         val[utility::conversions::to_string_t(U("game_id"))] = ModelBase::toJson(m_Game_id);
@@ -79,16 +73,6 @@ bool MintInput::fromJson(const web::json::value& val)
 {
     bool ok = true;
     
-    if(val.has_field(utility::conversions::to_string_t(U("contract_id"))))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("contract_id")));
-        if(!fieldValue.is_null())
-        {
-            utility::string_t refVal_setContractId;
-            ok &= ModelBase::fromJson(fieldValue, refVal_setContractId);
-            setContractId(refVal_setContractId);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t(U("game_id"))))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("game_id")));
@@ -149,10 +133,6 @@ void MintInput::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         namePrefix += utility::conversions::to_string_t(U("."));
     }
-    if(m_Contract_idIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("contract_id")), m_Contract_id));
-    }
     if(m_Game_idIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("game_id")), m_Game_id));
@@ -184,12 +164,6 @@ bool MintInput::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         namePrefix += utility::conversions::to_string_t(U("."));
     }
 
-    if(multipart->hasContent(utility::conversions::to_string_t(U("contract_id"))))
-    {
-        utility::string_t refVal_setContractId;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("contract_id"))), refVal_setContractId );
-        setContractId(refVal_setContractId);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t(U("game_id"))))
     {
         utility::string_t refVal_setGameId;
@@ -223,26 +197,6 @@ bool MintInput::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     return ok;
 }
 
-utility::string_t MintInput::getContractId() const
-{
-    return m_Contract_id;
-}
-
-void MintInput::setContractId(const utility::string_t& value)
-{
-    m_Contract_id = value;
-    m_Contract_idIsSet = true;
-}
-
-bool MintInput::contractIdIsSet() const
-{
-    return m_Contract_idIsSet;
-}
-
-void MintInput::unsetContract_id()
-{
-    m_Contract_idIsSet = false;
-}
 utility::string_t MintInput::getGameId() const
 {
     return m_Game_id;

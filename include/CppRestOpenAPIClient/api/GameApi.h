@@ -48,10 +48,10 @@ public:
     /// Get Game by ID created on the platform.
     /// </remarks>
     /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
-    /// <param name="id">Game or Game Id</param>
+    /// <param name="gameId">Game ID</param>
     pplx::task<std::shared_ptr<Game>> getGameById(
         utility::string_t authorization,
-        utility::string_t id
+        utility::string_t gameId
     ) const;
 
 protected:
