@@ -92,11 +92,11 @@ public:
     /// <summary>
     /// Custom properties of the asset.
     /// </summary>
-    std::shared_ptr<Object> getProperties() const;
+    utility::string_t getProperties() const;
     bool propertiesIsSet() const;
     void unsetProperties();
 
-    void setProperties(const std::shared_ptr<Object>& value);
+    void setProperties(const utility::string_t& value);
 
     /// <summary>
     /// Custom attributes of the asset.
@@ -106,6 +106,24 @@ public:
     void unsetAttributes();
 
     void setAttributes(const std::shared_ptr<Object>& value);
+
+    /// <summary>
+    /// Achievements of the asset.
+    /// </summary>
+    std::vector<utility::string_t>& getAchievements();
+    bool achievementsIsSet() const;
+    void unsetAchievements();
+
+    void setAchievements(const std::vector<utility::string_t>& value);
+
+    /// <summary>
+    /// Rewards of the asset.
+    /// </summary>
+    std::vector<utility::string_t>& getRewards();
+    bool rewardsIsSet() const;
+    void unsetRewards();
+
+    void setRewards(const std::vector<utility::string_t>& value);
 
     /// <summary>
     /// The description of the asset.
@@ -261,10 +279,14 @@ protected:
     bool m_NameIsSet;
     utility::string_t m_Parent_id;
     bool m_Parent_idIsSet;
-    std::shared_ptr<Object> m_Properties;
+    utility::string_t m_Properties;
     bool m_PropertiesIsSet;
     std::shared_ptr<Object> m_Attributes;
     bool m_AttributesIsSet;
+    std::vector<utility::string_t> m_Achievements;
+    bool m_AchievementsIsSet;
+    std::vector<utility::string_t> m_Rewards;
+    bool m_RewardsIsSet;
     utility::string_t m_Description;
     bool m_DescriptionIsSet;
     utility::string_t m_Status;

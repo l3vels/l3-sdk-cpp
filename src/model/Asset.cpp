@@ -28,8 +28,11 @@ Asset::Asset()
     m_NameIsSet = false;
     m_Parent_id = utility::conversions::to_string_t("");
     m_Parent_idIsSet = false;
+    m_Properties = utility::conversions::to_string_t("");
     m_PropertiesIsSet = false;
     m_AttributesIsSet = false;
+    m_AchievementsIsSet = false;
+    m_RewardsIsSet = false;
     m_Description = utility::conversions::to_string_t("");
     m_DescriptionIsSet = false;
     m_Status = utility::conversions::to_string_t("");
@@ -100,6 +103,14 @@ web::json::value Asset::toJson() const
     if(m_AttributesIsSet)
     {
         val[utility::conversions::to_string_t(U("attributes"))] = ModelBase::toJson(m_Attributes);
+    }
+    if(m_AchievementsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("achievements"))] = ModelBase::toJson(m_Achievements);
+    }
+    if(m_RewardsIsSet)
+    {
+        val[utility::conversions::to_string_t(U("rewards"))] = ModelBase::toJson(m_Rewards);
     }
     if(m_DescriptionIsSet)
     {
@@ -218,7 +229,7 @@ bool Asset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("properties")));
         if(!fieldValue.is_null())
         {
-            std::shared_ptr<Object> refVal_setProperties;
+            utility::string_t refVal_setProperties;
             ok &= ModelBase::fromJson(fieldValue, refVal_setProperties);
             setProperties(refVal_setProperties);
         }
@@ -231,6 +242,26 @@ bool Asset::fromJson(const web::json::value& val)
             std::shared_ptr<Object> refVal_setAttributes;
             ok &= ModelBase::fromJson(fieldValue, refVal_setAttributes);
             setAttributes(refVal_setAttributes);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("achievements"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("achievements")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<utility::string_t> refVal_setAchievements;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setAchievements);
+            setAchievements(refVal_setAchievements);
+        }
+    }
+    if(val.has_field(utility::conversions::to_string_t(U("rewards"))))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("rewards")));
+        if(!fieldValue.is_null())
+        {
+            std::vector<utility::string_t> refVal_setRewards;
+            ok &= ModelBase::fromJson(fieldValue, refVal_setRewards);
+            setRewards(refVal_setRewards);
         }
     }
     if(val.has_field(utility::conversions::to_string_t(U("description"))))
@@ -427,6 +458,14 @@ void Asset::toMultipart(std::shared_ptr<MultipartFormData> multipart, const util
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("attributes")), m_Attributes));
     }
+    if(m_AchievementsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("achievements")), m_Achievements));
+    }
+    if(m_RewardsIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("rewards")), m_Rewards));
+    }
     if(m_DescriptionIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t(U("description")), m_Description));
@@ -528,7 +567,7 @@ bool Asset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("properties"))))
     {
-        std::shared_ptr<Object> refVal_setProperties;
+        utility::string_t refVal_setProperties;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("properties"))), refVal_setProperties );
         setProperties(refVal_setProperties);
     }
@@ -537,6 +576,18 @@ bool Asset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
         std::shared_ptr<Object> refVal_setAttributes;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("attributes"))), refVal_setAttributes );
         setAttributes(refVal_setAttributes);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("achievements"))))
+    {
+        std::vector<utility::string_t> refVal_setAchievements;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("achievements"))), refVal_setAchievements );
+        setAchievements(refVal_setAchievements);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t(U("rewards"))))
+    {
+        std::vector<utility::string_t> refVal_setRewards;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("rewards"))), refVal_setRewards );
+        setRewards(refVal_setRewards);
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("description"))))
     {
@@ -717,12 +768,12 @@ void Asset::unsetParent_id()
 {
     m_Parent_idIsSet = false;
 }
-std::shared_ptr<Object> Asset::getProperties() const
+utility::string_t Asset::getProperties() const
 {
     return m_Properties;
 }
 
-void Asset::setProperties(const std::shared_ptr<Object>& value)
+void Asset::setProperties(const utility::string_t& value)
 {
     m_Properties = value;
     m_PropertiesIsSet = true;
@@ -756,6 +807,46 @@ bool Asset::attributesIsSet() const
 void Asset::unsetAttributes()
 {
     m_AttributesIsSet = false;
+}
+std::vector<utility::string_t>& Asset::getAchievements()
+{
+    return m_Achievements;
+}
+
+void Asset::setAchievements(const std::vector<utility::string_t>& value)
+{
+    m_Achievements = value;
+    m_AchievementsIsSet = true;
+}
+
+bool Asset::achievementsIsSet() const
+{
+    return m_AchievementsIsSet;
+}
+
+void Asset::unsetAchievements()
+{
+    m_AchievementsIsSet = false;
+}
+std::vector<utility::string_t>& Asset::getRewards()
+{
+    return m_Rewards;
+}
+
+void Asset::setRewards(const std::vector<utility::string_t>& value)
+{
+    m_Rewards = value;
+    m_RewardsIsSet = true;
+}
+
+bool Asset::rewardsIsSet() const
+{
+    return m_RewardsIsSet;
+}
+
+void Asset::unsetRewards()
+{
+    m_RewardsIsSet = false;
 }
 utility::string_t Asset::getDescription() const
 {
