@@ -92,11 +92,11 @@ public:
     /// <summary>
     /// Custom properties of the asset.
     /// </summary>
-    utility::string_t getProperties() const;
+    std::vector<utility::string_t>& getProperties();
     bool propertiesIsSet() const;
     void unsetProperties();
 
-    void setProperties(const utility::string_t& value);
+    void setProperties(const std::vector<utility::string_t>& value);
 
     /// <summary>
     /// Custom attributes of the asset.
@@ -279,7 +279,7 @@ protected:
     bool m_NameIsSet;
     utility::string_t m_Parent_id;
     bool m_Parent_idIsSet;
-    utility::string_t m_Properties;
+    std::vector<utility::string_t> m_Properties;
     bool m_PropertiesIsSet;
     std::shared_ptr<Object> m_Attributes;
     bool m_AttributesIsSet;

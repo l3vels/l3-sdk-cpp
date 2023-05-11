@@ -28,7 +28,6 @@ Asset::Asset()
     m_NameIsSet = false;
     m_Parent_id = utility::conversions::to_string_t("");
     m_Parent_idIsSet = false;
-    m_Properties = utility::conversions::to_string_t("");
     m_PropertiesIsSet = false;
     m_AttributesIsSet = false;
     m_AchievementsIsSet = false;
@@ -229,7 +228,7 @@ bool Asset::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t(U("properties")));
         if(!fieldValue.is_null())
         {
-            utility::string_t refVal_setProperties;
+            std::vector<utility::string_t> refVal_setProperties;
             ok &= ModelBase::fromJson(fieldValue, refVal_setProperties);
             setProperties(refVal_setProperties);
         }
@@ -567,7 +566,7 @@ bool Asset::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const ut
     }
     if(multipart->hasContent(utility::conversions::to_string_t(U("properties"))))
     {
-        utility::string_t refVal_setProperties;
+        std::vector<utility::string_t> refVal_setProperties;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t(U("properties"))), refVal_setProperties );
         setProperties(refVal_setProperties);
     }
@@ -768,12 +767,12 @@ void Asset::unsetParent_id()
 {
     m_Parent_idIsSet = false;
 }
-utility::string_t Asset::getProperties() const
+std::vector<utility::string_t>& Asset::getProperties()
 {
     return m_Properties;
 }
 
-void Asset::setProperties(const utility::string_t& value)
+void Asset::setProperties(const std::vector<utility::string_t>& value)
 {
     m_Properties = value;
     m_PropertiesIsSet = true;
