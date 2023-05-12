@@ -81,16 +81,6 @@ public:
         boost::optional<double> limit,
         boost::optional<double> page
     ) const;
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
-    pplx::task<void> transactionControllerWebhook(
-        utility::string_t authorization
-    ) const;
 
 protected:
     std::shared_ptr<const ApiClient> m_ApiClient;
