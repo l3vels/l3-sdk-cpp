@@ -15,6 +15,7 @@ include/CppRestOpenAPIClient/Object.h
 include/CppRestOpenAPIClient/api/AssetApi.h
 include/CppRestOpenAPIClient/api/CollectionApi.h
 include/CppRestOpenAPIClient/api/ContractApi.h
+include/CppRestOpenAPIClient/api/DefaultApi.h
 include/CppRestOpenAPIClient/api/GameApi.h
 include/CppRestOpenAPIClient/api/MintApi.h
 include/CppRestOpenAPIClient/api/PlayerApi.h
@@ -46,6 +47,7 @@ src/Object.cpp
 src/api/AssetApi.cpp
 src/api/CollectionApi.cpp
 src/api/ContractApi.cpp
+src/api/DefaultApi.cpp
 src/api/GameApi.cpp
 src/api/MintApi.cpp
 src/api/PlayerApi.cpp
