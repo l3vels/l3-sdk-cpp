@@ -24,6 +24,7 @@
 #include "CppRestOpenAPIClient/ApiClient.h"
 
 #include "CppRestOpenAPIClient/model/Collection.h"
+#include "CppRestOpenAPIClient/Object.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
@@ -41,6 +42,18 @@ public:
 
     virtual ~CollectionApi();
 
+    /// <summary>
+    /// Create a new collection inside specific game
+    /// </summary>
+    /// <remarks>
+    /// This API method creates collection in a specified game
+    /// </remarks>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="body"></param>
+    pplx::task<std::shared_ptr<Collection>> collectionControllerCreateCollection(
+        utility::string_t authorization,
+        std::shared_ptr<Object> body
+    ) const;
     /// <summary>
     /// Count collections
     /// </summary>
