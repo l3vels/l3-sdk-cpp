@@ -23,6 +23,7 @@
 
 #include "CppRestOpenAPIClient/ApiClient.h"
 #include "CppRestOpenAPIClient/ModelBase.h"
+#include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
 
 namespace api {
@@ -39,6 +40,16 @@ public:
 
     virtual ~DefaultApi();
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="sql"></param>
+    pplx::task<void> chatControllerGetSqlReport(
+        utility::string_t sql
+    ) const;
     /// <summary>
     /// 
     /// </summary>

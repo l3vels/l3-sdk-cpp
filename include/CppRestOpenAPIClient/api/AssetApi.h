@@ -25,6 +25,7 @@
 
 #include "CppRestOpenAPIClient/model/Asset.h"
 #include "CppRestOpenAPIClient/model/AssetsResponse.h"
+#include "CppRestOpenAPIClient/Object.h"
 #include "CppRestOpenAPIClient/model/UpdateAssetInput.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -54,6 +55,18 @@ public:
     pplx::task<double> countByGame(
         utility::string_t authorization,
         utility::string_t gameId
+    ) const;
+    /// <summary>
+    /// Create asset 
+    /// </summary>
+    /// <remarks>
+    /// Create asset in specific collection. Example: Create asset AK-47 in collection Weapons
+    /// </remarks>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="body"></param>
+    pplx::task<std::shared_ptr<Asset>> createAsset(
+        utility::string_t authorization,
+        std::shared_ptr<Object> body
     ) const;
     /// <summary>
     /// Retrieve asset by ID

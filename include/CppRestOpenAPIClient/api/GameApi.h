@@ -86,6 +86,18 @@ public:
         utility::string_t authorization,
         utility::string_t gameId
     ) const;
+    /// <summary>
+    /// Retrieve Game By Name
+    /// </summary>
+    /// <remarks>
+    /// Get Game by Name created on the platform.
+    /// </remarks>
+    /// <param name="authorization">API key is associated with multiple games. Please include it in to use developers API.</param>
+    /// <param name="name"></param>
+    pplx::task<std::shared_ptr<Game>> getGameByName(
+        utility::string_t authorization,
+        utility::string_t name
+    ) const;
 
 protected:
     std::shared_ptr<const ApiClient> m_ApiClient;
